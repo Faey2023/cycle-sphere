@@ -1,24 +1,23 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const Banner = () => {
   return (
     <div className="bg-white">
-      <div className="grid max-w-screen-xl py-8 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
+      <div className="mx-auto grid max-w-screen-xl py-8 lg:grid-cols-12 lg:gap-8 xl:gap-0">
         <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl  ">
+          <h1 className="mb-4 max-w-2xl text-4xl leading-none font-extrabold tracking-tight md:text-5xl xl:text-6xl">
             Ride Into Adventure with the Perfect Cycle!
           </h1>
-          <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl  ">
-            Discover top-quality bicycles designed for every ride—whether you're
-            cruising through the city, conquering rugged trails, or chasing
-            speed on the open road. Find the perfect match for your journey
-            today!
+          <p className="mb-6 max-w-2xl font-light text-gray-500 md:text-lg lg:mb-8 lg:text-xl">
+            Discover top-quality bicycles designed for every ride—whether you're cruising through
+            the city, conquering rugged trails, or chasing speed on the open road. Find the perfect
+            match for your journey today!
           </p>
           <Link to="/allBicycles">
-            <button className="inline-flex cursor-pointer items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300  ">
+            <button className="mr-3 inline-flex cursor-pointer items-center justify-center rounded-lg bg-cyan-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300">
               Shop Now
               <svg
-                className="w-5 h-5 ml-2 -mr-1"
+                className="-mr-1 ml-2 h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31,11 +30,11 @@ const Banner = () => {
               </svg>
             </button>
           </Link>
-          <button className="inline-flex cursor-pointer items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100  ">
+          <button className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
             Explore Collections
           </button>
         </div>
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+        <div className="hidden lg:col-span-5 lg:mt-0 lg:flex">
           <img src="/assets/cycle-banner.png" alt="man-on-a-cycle-image" />
         </div>
       </div>

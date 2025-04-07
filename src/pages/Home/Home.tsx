@@ -1,9 +1,11 @@
-import Banner from "./Banner/Banner";
+import Banner from '@/components/Home/Banner/Banner';
+import Testimonial from '@/components/Home/Testimonial/Testimonial';
 
 const Home = () => {
   return (
-    <div className="my-10 mx-5">
-     <Banner/>
+    <div className="mx-5 my-10 space-y-5">
+      <Banner />
+      <Testimonial />
     </div>
   );
 };
