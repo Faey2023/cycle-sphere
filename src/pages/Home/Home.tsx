@@ -1,12 +1,9 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router";
+import Banner from "./Banner/Banner";
 
 const Home = () => {
   return (
     <div className="my-10 mx-5">
-      <Button asChild>
-        <Link to="/">Home</Link>
-      </Button>
+     <Banner/>
     </div>
   );
 };

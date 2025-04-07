@@ -121,7 +121,7 @@ const Footer = () => {
                     placeholder="Enter your email"
                   />
                   <button
-                    className="px-3 py-2 text-sm font-medium text-center text-white no-underline bg-blue-500 border-2 border-blue-500"
+                    className="px-3 py-2 text-sm font-medium text-center text-white no-underline bg-cyan-500 border-2 border-cyan-500"
                     type="submit"
                   >
                     Subscribe
