@@ -1,9 +1,11 @@
 import Banner from '@/components/Home/Banner/Banner';
+import Testimonial from '@/components/Home/Testimonial/Testimonial';
 
 const Home = () => {
   return (
-    <div className="my-10 mx-5">
+    <div className="mx-5 my-10">
       <Banner />
+      <Testimonial />
     </div>
   );
 };

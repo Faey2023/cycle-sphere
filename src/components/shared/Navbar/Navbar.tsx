@@ -10,24 +10,24 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center p-5 shadow-lg relative z-10">
+    <nav className="relative z-10 flex items-center justify-between p-5 shadow-lg">
       <Link to="/">
         <img
-          className="w-45 md:w-[250px] h-[50px]"
+          className="h-[50px] w-45 md:w-[250px]"
           src="../assets/logo.png"
           alt="cycle-sphere-logo"
         />
       </Link>
-      <ul className="hidden md:flex space-x-6">
+      <ul className="hidden space-x-6 md:flex">
         <li>
-          <Link to="/" className="text-black  font-medium px-2 py-1 rounded-md hover:bg-gray-100">
+          <Link to="/" className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100">
             Home
           </Link>
         </li>
         <li>
           <Link
             to="/allBicycles"
-            className="text-black   font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+            className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
           >
             All Bicycles
           </Link>
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
         <li>
           <Link
             to="/aboutUs"
-            className="text-black   font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+            className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
           >
             About Us
           </Link>
@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
         <li>
           <Link
             to="/checkout"
-            className="text-black   font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+            className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
           >
             Checkout
           </Link>
@@ -54,26 +54,26 @@ const Navbar: React.FC = () => {
         <Link to="/signUp">Sign Up</Link>
       </Button>
 
-      <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
+      <div className="cursor-pointer md:hidden" onClick={toggleMenu}>
         <span
-          className={`block w-6 h-1 bg-black my-1 transition-all duration-300 transform ${
-            isMenuOpen ? 'rotate-45 translate-y-2' : ''
+          className={`my-1 block h-1 w-6 transform bg-black transition-all duration-300 ${
+            isMenuOpen ? 'translate-y-2 rotate-45' : ''
           }`}
         ></span>
         <span
-          className={`block w-6 h-1 bg-black my-1 transition-all duration-300 ${
+          className={`my-1 block h-1 w-6 bg-black transition-all duration-300 ${
             isMenuOpen ? 'opacity-0' : ''
           }`}
         ></span>
         <span
-          className={`block w-6 h-1 bg-black my-1 transition-all duration-300 transform ${
-            isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+          className={`my-1 block h-1 w-6 transform bg-black transition-all duration-300 ${
+            isMenuOpen ? '-translate-y-2 -rotate-45' : ''
           }`}
         ></span>
       </div>
 
       <div
-        className={`md:hidden fixed top-0 left-0 w-3/5 h-full bg-white p-8 transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-3/5 bg-white p-8 transition-all duration-500 ease-in-out md:hidden ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
           <li>
             <Link
               to="/"
-              className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+              className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
             >
               Home
             </Link>
@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
           <li>
             <Link
               to="/allBicycles"
-              className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+              className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
             >
               All Bicycles
             </Link>
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
           <li>
             <Link
               to="/aboutUs"
-              className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+              className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
             >
               About Us
             </Link>
@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
           <li>
             <Link
               to="/checkout"
-              className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
+              className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
             >
               Checkout
             </Link>
