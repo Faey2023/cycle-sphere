@@ -3,7 +3,7 @@ import Testimonial from '@/components/Home/Testimonial/Testimonial';
 
 const Home = () => {
   return (
-    <div className="mx-5 my-10 space-y-5">
+    <div className="mx-5 my-10">
       <Banner />
       <Testimonial />
     </div>
