@@ -1,13 +1,17 @@
 {
+  "compilerOptions": {
+    "composite": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true
+  },
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
-  }
+  ]
 }
