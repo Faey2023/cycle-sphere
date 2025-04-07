@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const Banner = () => {
   return (
@@ -9,10 +9,9 @@ const Banner = () => {
             Ride Into Adventure with the Perfect Cycle!
           </h1>
           <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl  ">
-            Discover top-quality bicycles designed for every ride—whether you're
-            cruising through the city, conquering rugged trails, or chasing
-            speed on the open road. Find the perfect match for your journey
-            today!
+            Discover top-quality bicycles designed for every ride—whether you're cruising through
+            the city, conquering rugged trails, or chasing speed on the open road. Find the perfect
+            match for your journey today!
           </p>
           <Link to="/allBicycles">
             <button className="inline-flex cursor-pointer items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300  ">

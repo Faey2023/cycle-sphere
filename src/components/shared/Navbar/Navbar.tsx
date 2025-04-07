@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { Link } from "react-router";
+import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { Link } from 'react-router';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -20,24 +20,21 @@ const Navbar: React.FC = () => {
       </Link>
       <ul className="hidden md:flex space-x-6">
         <li>
-          <Link
-            to="/"
-            className="text-black  font-medium px-2 py-1 rounded-md hover:bg-gray-100"
-          >
+          <Link to="/" className="text-black  font-medium px-2 py-1 rounded-md hover:bg-gray-100">
             Home
           </Link>
         </li>
         <li>
           <Link
-            to="/"
+            to="/allBicycles"
             className="text-black   font-medium px-2 py-1 rounded-md hover:bg-gray-100"
           >
-            All Products
+            All Bicycles
           </Link>
         </li>
         <li>
           <Link
-            to="/"
+            to="/aboutUs"
             className="text-black   font-medium px-2 py-1 rounded-md hover:bg-gray-100"
           >
             About Us
@@ -45,7 +42,7 @@ const Navbar: React.FC = () => {
         </li>
         <li>
           <Link
-            to="/"
+            to="/checkout"
             className="text-black   font-medium px-2 py-1 rounded-md hover:bg-gray-100"
           >
             Checkout
@@ -54,30 +51,30 @@ const Navbar: React.FC = () => {
       </ul>
 
       <Button asChild>
-        <Link to="/">Sign Up</Link>
+        <Link to="/signUp">Sign Up</Link>
       </Button>
 
       <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
         <span
           className={`block w-6 h-1 bg-black my-1 transition-all duration-300 transform ${
-            isMenuOpen ? "rotate-45 translate-y-2" : ""
+            isMenuOpen ? 'rotate-45 translate-y-2' : ''
           }`}
         ></span>
         <span
           className={`block w-6 h-1 bg-black my-1 transition-all duration-300 ${
-            isMenuOpen ? "opacity-0" : ""
+            isMenuOpen ? 'opacity-0' : ''
           }`}
         ></span>
         <span
           className={`block w-6 h-1 bg-black my-1 transition-all duration-300 transform ${
-            isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+            isMenuOpen ? '-rotate-45 -translate-y-2' : ''
           }`}
         ></span>
       </div>
 
       <div
         className={`md:hidden fixed top-0 left-0 w-3/5 h-full bg-white p-8 transition-all duration-500 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <ul>
@@ -91,15 +88,15 @@ const Navbar: React.FC = () => {
           </li>
           <li>
             <Link
-              to="/"
+              to="/allBicycles"
               className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
             >
-              All Products
+              All Bicycles
             </Link>
           </li>
           <li>
             <Link
-              to="/"
+              to="/aboutUs"
               className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
             >
               About Us
@@ -107,7 +104,7 @@ const Navbar: React.FC = () => {
           </li>
           <li>
             <Link
-              to="/"
+              to="/checkout"
               className="text-black text-sm font-medium px-2 py-1 rounded-md hover:bg-gray-100"
             >
               Checkout
@@ -116,7 +113,7 @@ const Navbar: React.FC = () => {
         </ul>
 
         <Button asChild>
-          <Link to="/">Sign Up</Link>
+          <Link to="/signUp">Sign Up</Link>
         </Button>
       </div>
     </nav>

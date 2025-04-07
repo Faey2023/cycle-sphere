@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from 'react-router';
 
 const Footer = () => {
   return (
@@ -121,7 +121,7 @@ const Footer = () => {
                     placeholder="Enter your email"
                   />
                   <button
-                    className="px-3 py-2 text-sm font-medium text-center text-white no-underline bg-cyan-500 border-2 border-cyan-500"
+                    className="px-3 py-2 text-sm font-medium text-center text-white no-underline bg-cyan-600 border-2 border-cyan-600"
                     type="submit"
                   >
                     Subscribe
