@@ -7,8 +7,8 @@ export interface IFilter {
   category?: string;
   availability?: 'inStock' | 'upcoming' | 'all';
 }
+
 export interface IInitialState {
-  // bicycles: Bicycle[];
   search: string;
   filters: IFilter;
 }
