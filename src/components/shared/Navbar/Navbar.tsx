@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
         </li>
       </ul>
 
-      <Button asChild>
+      <Button asChild className="hidden md:block">
         <Link to="/signUp">Sign Up</Link>
       </Button>
 
