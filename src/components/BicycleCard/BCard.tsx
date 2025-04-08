@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { Bicycle } from '@/types';
 
 const BCard = ({ bicycle }: { bicycle: Bicycle }) => {
-  const { img, name, brand, model, price, category, _id } = bicycle;
+  const { name, brand, model, price, category, _id } = bicycle;
 
   return (
     <Card className="h-fit w-full rounded-2xl p-4 shadow-md">
