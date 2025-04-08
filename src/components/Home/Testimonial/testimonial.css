@@ -11,7 +11,8 @@
 }
 
 .swiper-pagination-bullet-active {
-  background: black;
+  background: white;
+  border: 2px solid cyan;
   width: 10px;
   height: 10px;
 }

@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './testimonial.css';
@@ -12,7 +11,11 @@ const Testimonial = () => {
         See what our satisfied customer has to say.
       </h2>
       <Swiper
-        modules={[Pagination]}
+        modules={[Autoplay, Pagination]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         slidesPerView={'auto'}
         spaceBetween={6}
         centeredSlides={true}
