@@ -3,10 +3,9 @@ import { useAppDispatch } from '@/redux/hook';
 import { Card, CardContent } from '../ui/card';
 import { Slider } from '../ui/slider';
 import { useState } from 'react';
-import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
 import { Checkbox } from '../ui/checkbox';
 import { useGetAllBicycleQuery } from '@/redux/api/baseApi';
+import { Bicycle } from '@/types';
 
 export type TBrand = {
   brand: string[];
@@ -15,17 +14,21 @@ export type TBrand = {
 export default function FilterSidebar() {
   const dispatch = useAppDispatch();
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
-  const [availability, setAvailability] = useState(false);
+  //   const [availability, setAvailability] = useState(false);
   const { data, isLoading } = useGetAllBicycleQuery('');
 
   //
-  const uniqueBrand: string[] = Array.from(new Set(data?.data.map((brand: string) => brand.brand)));
-  const uniqueMode: string[] = Array.from(new Set(data?.data.map((model: string) => model.model)));
+  const uniqueBrand: string[] = Array.from(
+    new Set(data?.data.map((bicycle: Bicycle) => bicycle.brand)),
+  );
+  const uniqueMode: string[] = Array.from(
+    new Set(data?.data.map((bicycle: Bicycle) => bicycle.model)),
+  );
   const uniqueCategory: string[] = Array.from(
-    new Set(data?.data.map((category: string) => category.category)),
+    new Set(data?.data.map((bicycle: Bicycle) => bicycle.category)),
   );
   const uniqueAvailability: string[] = Array.from(
-    new Set(data?.data.map((availability: string) => availability.inStock)),
+    new Set(data?.data.map((bicycle: Bicycle) => bicycle.inStock)),
   );
   console.log('Unique brands: ', uniqueBrand, uniqueMode, uniqueCategory, uniqueAvailability);
 
@@ -44,11 +47,9 @@ export default function FilterSidebar() {
     dispatch(setFilters({ price: newRange }));
   };
 
-  // Availability toggle
-  const handleAvailabilityToggle = (checked: boolean) => {
-    setAvailability(checked);
-    dispatch(setFilters({ availability: checked ? 'inStock' : 'all' }));
-  };
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
   return (
     <div className="mt-4 space-y-4">
