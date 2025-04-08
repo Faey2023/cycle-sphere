@@ -8,7 +8,7 @@ const BCard = ({ bicycle }: { bicycle: Bicycle }) => {
   const { img, name, brand, model, price, category, _id } = bicycle;
 
   return (
-    <Card className="w-full rounded-2xl p-4 shadow-md">
+    <Card className="h-fit w-full rounded-2xl p-4 shadow-md">
       <CardContent className="space-y-2">
         <h3 className="text-xl font-bold">{name}</h3>
         <p>Brand: {brand}</p>

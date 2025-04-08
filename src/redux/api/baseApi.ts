@@ -7,7 +7,7 @@ export const baseApi = createApi({
   }),
   endpoints: (builder) => ({
     getAllBicycle: builder.query({
-      query: () => '/',
+      query: (searchTerm?: string) => (searchTerm ? `?searchTerm=${searchTerm}` : '/'),
     }),
     getSingleBicycle: builder.query({
       query: (productId) => `/${productId}`,
