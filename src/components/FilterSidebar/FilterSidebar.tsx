@@ -18,17 +18,15 @@ export default function FilterSidebar() {
   const [availability, setAvailability] = useState(false);
   const { data, isLoading } = useGetAllBicycleQuery('');
 
+  //
   const uniqueBrand: string[] = Array.from(new Set(data?.data.map((brand: string) => brand.brand)));
   const uniqueMode: string[] = Array.from(new Set(data?.data.map((model: string) => model.model)));
-
   const uniqueCategory: string[] = Array.from(
     new Set(data?.data.map((category: string) => category.category)),
   );
-
   const uniqueAvailability: string[] = Array.from(
     new Set(data?.data.map((availability: string) => availability.inStock)),
   );
-
   console.log('Unique brands: ', uniqueBrand, uniqueMode, uniqueCategory, uniqueAvailability);
 
   console.log('im from filter page', data?.data);

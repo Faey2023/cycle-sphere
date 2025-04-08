@@ -8,8 +8,14 @@ import { useAppSelector } from '@/redux/hook';
 import { Bicycle } from '@/types';
 
 export default function AllBicycles() {
-  const { search } = useAppSelector((state) => state.bicycles);
-  const { data: bicycles = [], isLoading } = useGetAllBicycleQuery(search);
+  // const { search } = useAppSelector((state) => state.bicycles);
+  // const { data: bicycles = [], isLoading } = useGetAllBicycleQuery(search);
+  const { filters, search } = useAppSelector((state) => state.bicycles);
+
+  const { data: bicycles = [], isLoading } = useGetAllBicycleQuery({
+    search,
+    filters,
+  });
 
   if (isLoading) {
     return <span>Loading...</span>;
