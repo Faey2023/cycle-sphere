@@ -10,7 +10,7 @@ export const baseApi = createApi({
       query: (searchTerm?: string) => (searchTerm ? `?searchTerm=${searchTerm}` : '/'),
     }),
     getSingleBicycle: builder.query({
-      query: (productId) => `/${productId}`,
+      query: (productId?: string | undefined) => `/${productId}`,
     }),
   }),
 });
