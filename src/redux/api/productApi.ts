@@ -1,17 +1,13 @@
 import { GetAllBicyclesParams } from '@/types';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import baseApi from './baseApi';
 
-export const productApi = createApi({
-  reducerPath: 'productApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api/products',
-  }),
+const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBicycle: builder.query({
       query: (params: GetAllBicyclesParams | string = {}) => {
         // if searching true,
         if (typeof params === 'string') {
-          return params ? `?searchTerm=${params}` : '/';
+          return params ? `/products?searchTerm=${params}` : '/products';
         }
 
         // building query string from params object when multiple query exist
@@ -40,36 +36,36 @@ export const productApi = createApi({
         }
 
         const queryString = queryParams.toString();
-        return queryString ? `?${queryString}` : '/';
+        return queryString ? `/products?${queryString}` : '/products';
       },
     }),
     getSingleBicycle: builder.query({
-      query: (productId?: string | undefined) => `/${productId}`,
+      query: (productId?: string | undefined) => `/products/${productId}`,
     }),
     addBicycle: builder.mutation({
       query: (data) => ({
-        url: `/`,
+        url: `/products`,
         method: 'POST',
         body: data,
       }),
     }),
     updateBicycle: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/${id}`,
+        url: `/products/${id}`,
         method: 'PATCH',
         body: data,
       }),
     }),
     deleteBicycle: builder.mutation({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/products/${id}`,
         method: 'DELETE',
       }),
     }),
   }),
 });
 
-export const { useGetAllBicycleQuery, useGetSingleBicycleQuery, useAddBicycleMutation, useUpdateBicycleMutation, useDeleteBicycleMutation } = productApi;
+export const { useGetAllBicycleQuery, useGetSingleBicycleQuery } = productApi;
 
 // web API
 //https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
