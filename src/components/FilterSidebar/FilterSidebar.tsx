@@ -66,7 +66,7 @@ export default function FilterSidebar() {
             onValueChange={handleSliderChange}
           />
 
-          <div className="flex h-full w-full flex-col gap-2 md:flex-row">
+          <div className="flex h-full w-full flex-col gap-2 lg:flex-row">
             <input
               type="number"
               value={priceRange[0]}
@@ -74,7 +74,7 @@ export default function FilterSidebar() {
               max={priceRange[1]}
               onChange={(e) => handleInputChange(0, Number(e.target.value))}
               placeholder="Min Price"
-              className="w-full rounded border p-2 md:w-1/2"
+              className="w-full rounded border p-2"
             />
             <input
               type="number"
@@ -83,7 +83,7 @@ export default function FilterSidebar() {
               max={10000}
               onChange={(e) => handleInputChange(1, Number(e.target.value))}
               placeholder="Max Price"
-              className="w-full rounded border p-2 md:w-1/2"
+              className="w-full rounded border p-2"
             />
           </div>
 
