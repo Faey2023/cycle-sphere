@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { baseApi } from './api/baseApi';
+import baseApi from './api/baseApi';
 import bicycleReducer from './features/bicycle/bicycleSlice';
 import authReducer from './features/auth/authSlice';
 

@@ -4,7 +4,7 @@ import 'swiper/css/navigation';
 import './Featured.css';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
-import { useGetAllBicycleQuery } from '@/redux/api/baseApi';
+import { useGetAllBicycleQuery } from '@/redux/api/productApi';
 import { Bicycle } from '@/types';
 import { Navigation } from 'swiper/modules';
 

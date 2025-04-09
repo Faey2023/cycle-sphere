@@ -28,6 +28,17 @@ export interface Bicycle {
   isDeleted: boolean;
 }
 
+//  query parameters for searching and filtering |> product Api
+export interface GetAllBicyclesParams {
+  searchTerm?: string;
+  brand?: string;
+  category?: string;
+  model?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  inStock?: boolean;
+}
+
 // export interface IBicycle {
 //   name: string;
 //   brand: string;
