@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
 import AllBicycles from './pages/AllBicycles/AllBicycles.tsx';
 import BicycleDetails from './pages/BicycleDetails/BicycleDetails.tsx';
+import DummyDashboard from './layout/DummyDashboard/DummyDashboard.tsx';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/bicycles/:id',
         element: <BicycleDetails />,
+      },
+      {
+        path:'/dummy-dashboard',
+        element: <DummyDashboard></DummyDashboard>
       },
       {
         path: '/checkout',

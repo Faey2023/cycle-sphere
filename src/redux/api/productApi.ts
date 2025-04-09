@@ -69,7 +69,7 @@ export const productApi = createApi({
   }),
 });
 
-export const { useGetAllBicycleQuery, useGetSingleBicycleQuery } = productApi;
+export const { useGetAllBicycleQuery, useGetSingleBicycleQuery, useAddBicycleMutation, useUpdateBicycleMutation, useDeleteBicycleMutation } = productApi;
 
 // web API
 //https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
