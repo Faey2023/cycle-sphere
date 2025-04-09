@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { useGetAllBicycleQuery, useGetSingleBicycleQuery } from '@/redux/api/baseApi';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {
@@ -20,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { useState } from 'react';
 import { Bicycle } from '@/types';
+import { useGetAllBicycleQuery, useGetSingleBicycleQuery } from '@/redux/api/productApi';
 
 export default function BicycleDetails() {
   const { id } = useParams<{ id: string }>();

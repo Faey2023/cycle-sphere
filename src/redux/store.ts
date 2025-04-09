@@ -1,15 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { baseApi } from './api/baseApi';
-
 import bicycleReducer from './features/bicycle/bicycleSlice';
+import { productApi } from './api/productApi';
 
 export const store = configureStore({
   reducer: {
     bicycles: bicycleReducer,
-    [baseApi.reducerPath]: baseApi.reducer,
+    [productApi.reducerPath]: productApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(baseApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productApi.middleware),
   // middleware : (getDefaultMiddleware)=> getDefaultMiddleware().concat(logger)
 });
 
