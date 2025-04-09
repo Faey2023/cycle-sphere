@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 interface RoleProtectedRouteProps {
-  allowedRoles: string[];  // List of roles that are allowed to access the route
+  allowedRoles: string[]; // List of roles that are allowed to access the route
   children: React.ReactNode; // The component(s) to render if access is granted
 }
 

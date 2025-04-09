@@ -2,7 +2,7 @@
 import React from 'react';
 import { Table, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { deactivateUser, activateUser } from '../../redux/features/bicycle/auth/authSlice'; // Import the action
+import { deactivateUser, activateUser } from '../../redux/features/auth/authSlice'; // Import the action
 
 const UsersManagement = () => {
   const dispatch = useDispatch();
@@ -38,14 +38,14 @@ const UsersManagement = () => {
       key: 'actions',
       render: (text: string, record: any) => (
         <div>
-          <Button 
-            onClick={() => handleDeactivate(record.id)} 
+          <Button
+            onClick={() => handleDeactivate(record.id)}
             disabled={!record.active} // Disable deactivate for already deactivated users
           >
             Deactivate
           </Button>
-          <Button 
-            onClick={() => handleActivate(record.id)} 
+          <Button
+            onClick={() => handleActivate(record.id)}
             disabled={record.active} // Disable activate for already active users
           >
             Activate
