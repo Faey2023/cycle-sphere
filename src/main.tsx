@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store.ts';
 import AllBicycles from './pages/AllBicycles/AllBicycles.tsx';
 import BicycleDetails from './pages/BicycleDetails/BicycleDetails.tsx';
+import DummyDashboard from './layout/DummyDashboard/DummyDashboard.tsx';
 import AdminDashboard from './components/Dashboard/AdminDashboard.tsx';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/allBicycles', element: <AllBicycles /> },
       { path: '/bicycles/:id', element: <BicycleDetails /> },
+      {
+        path: '/dummy-dashboard',
+        element: <DummyDashboard></DummyDashboard>,
+      },
       {
         path: '/checkout',
         element: <Checkout />,
