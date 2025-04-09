@@ -17,7 +17,7 @@ const Featured = () => {
 
   const featuredBikes = bicycles?.data?.slice(0, 6) || [];
 
-  console.log(featuredBikes);
+  // console.log(featuredBikes);
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-white font-sans">

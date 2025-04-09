@@ -7,7 +7,7 @@ const productApi = baseApi.injectEndpoints({
       query: (params: GetAllBicyclesParams | string = {}) => {
         // if searching true,
         if (typeof params === 'string') {
-          return params ? `?searchTerm=${params}` : '/products';
+          return params ? `/products?searchTerm=${params}` : '/products';
         }
 
         // building query string from params object when multiple query exist
@@ -36,7 +36,7 @@ const productApi = baseApi.injectEndpoints({
         }
 
         const queryString = queryParams.toString();
-        return queryString ? `?${queryString}` : '/products';
+        return queryString ? `/products?${queryString}` : '/products';
       },
     }),
     getSingleBicycle: builder.query({
