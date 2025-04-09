@@ -1,5 +1,14 @@
+import { useGetAllOrderQuery } from '@/redux/features/order/orderApi';
+import { GetAllOrderParams } from '@/types';
+import { Skeleton } from '@/components/ui/skeleton';
 const Checkout = () => {
-  return (
+  const { data: order = [], isLoading } = useGetAllOrderQuery(undefined);
+  const orderData: GetAllOrderParams[] = order?.data;
+  console.log(orderData);
+
+  return isLoading ? (
+    <Skeleton />
+  ) : (
     <div className="mx-auto max-w-5xl p-6">
       <h1 className="mb-4 text-3xl font-bold">Checkout Page</h1>
       <div className="space-y-4">

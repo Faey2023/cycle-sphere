@@ -39,6 +39,14 @@ export interface GetAllBicyclesParams {
   inStock?: boolean;
 }
 
+export interface GetAllOrderParams {
+  _id: string;
+  email: string;
+  product: string;
+  quantity: number;
+  totalPrice: number;
+}
+
 // export interface IBicycle {
 //   name: string;
 //   brand: string;
