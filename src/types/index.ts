@@ -43,6 +43,8 @@ export interface GetAllOrderParams {
   _id: string;
   email: string;
   product: string;
+  status: string;
+  createdAt: Date;
   quantity: number;
   totalPrice: number;
 }

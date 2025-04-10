@@ -3,7 +3,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './Featured.css';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useGetAllBicycleQuery } from '@/redux/api/productApi';
 import { Bicycle } from '@/types';
 import { Navigation } from 'swiper/modules';
@@ -17,7 +17,7 @@ const Featured = () => {
 
   const featuredBikes = bicycles?.data?.slice(0, 6) || [];
 
-  // console.log(featuredBikes);
+  console.log(featuredBikes);
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-white font-sans">

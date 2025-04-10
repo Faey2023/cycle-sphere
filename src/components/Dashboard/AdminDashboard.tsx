@@ -1,7 +1,7 @@
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { Link } from 'react-router-dom'; // Import Link for navigation
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
 

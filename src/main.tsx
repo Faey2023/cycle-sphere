@@ -15,8 +15,7 @@ import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
 import SignIn from './pages/SignIn'; // Import the SignIn component
 import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
-import Checkout from './pages/Checkout/Checkout.tsx';
-
+import Checkout from './pages/Orders/Orders.tsx';
 const router = createBrowserRouter([
   {
     path: '/',
