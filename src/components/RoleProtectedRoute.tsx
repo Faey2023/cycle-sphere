@@ -13,7 +13,7 @@ const RoleProtectedRoute: React.FC<RoleProtectedRouteProps> = ({ allowedRoles, c
   const location = useLocation();
 
   // Check if the user is logged in and has the correct role
-  const userHasAccess = user && allowedRoles.includes(user.role);
+  const userHasAccess = user && user.role && allowedRoles.includes(user.role);
 
   if (!user || !userHasAccess) {
     // If the user doesn't have the correct role, redirect to the unauthorized page
