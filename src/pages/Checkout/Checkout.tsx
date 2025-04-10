@@ -25,7 +25,7 @@ const Checkout = () => {
       <h2 className="mb-4 text-2xl font-semibold">Confirm Your Order</h2>
       <div className="rounded-lg border p-4 shadow">
         <p>
-          <strong>Product Name:</strong> {orderedProductData.name}
+          <strong>Product Name:</strong> {orderedProductData?.name}
         </p>
         <p>
           <strong>Email:</strong> {order.email}
