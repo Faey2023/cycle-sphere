@@ -14,6 +14,8 @@ import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
 import SignIn from './pages/SignIn';  // Import the SignIn component
 import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
+import Register from './pages/Register.tsx';
+import AuthProvider from './context/AuthProvider.tsx';
 
 const router = createBrowserRouter([
   {
@@ -46,7 +48,7 @@ const router = createBrowserRouter([
         ),
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp' /* TODO */ },
+      { path: '/signUp', element: <Register /> },  // Updated route for Register
       { path: '/signIn', element: <SignIn /> },  // Updated route for SignIn
 
       { path: '/unauthorized', element: <Unauthorized /> },
@@ -73,7 +75,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
+      <AuthProvider>
       <RouterProvider router={router} />
+      </AuthProvider>
     </Provider>
   </React.StrictMode>,
 );
