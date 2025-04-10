@@ -19,6 +19,7 @@ import Products from './components/Products/Products.tsx';
 import CreateBicycleForm from './components/Products/CreateBicycleForm.tsx';
 import UpdateBicycleForm from './components/Products/UpdateBicycleForm.tsx';
 import ProductDetails from './components/Products/ProductDetails.tsx';
+import Order from './pages/Orders/Orders.tsx';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
           {
             path: 'users-management',
             element: <UsersManagement />, // Add the UsersManagement route
+          },
+          {
+            path: 'orders',
+            element: <Order />, // Add the UsersManagement route
           },
         ],
       },
