@@ -2,12 +2,6 @@ import baseApi from '@/redux/api/baseApi';
 
 const orderApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAllOrder: builder.query({
-      query: () => ({
-        url: `/orders`,
-        method: 'GET',
-      }),
-    }),
     placeOrder: builder.mutation({
       query: (orderData) => ({
         url: '/orders',
@@ -15,8 +9,17 @@ const orderApi = baseApi.injectEndpoints({
         body: orderData,
       }),
     }),
+    getAllOrder: builder.query({
+      query: () => ({
+        url: `/orders`,
+        method: 'GET',
+      }),
+    }),
+    getOrdersByEmail: builder.query({
+      query: (email: string) => `/orders?email=${email}`,
+    }),
   }),
 });
 
-export const { usePlaceOrderMutation, useGetAllOrderQuery } = orderApi;
+export const { usePlaceOrderMutation, useGetAllOrderQuery, useGetOrdersByEmailQuery } = orderApi;
 export default orderApi;

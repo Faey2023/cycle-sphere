@@ -20,6 +20,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useState } from 'react';
 import { Bicycle } from '@/types';
 import { useGetAllBicycleQuery, useGetSingleBicycleQuery } from '@/redux/api/productApi';
+import BuyNow from './BuyNow';
 
 export default function BicycleDetails() {
   const { id } = useParams<{ id: string }>();
@@ -229,13 +230,20 @@ export default function BicycleDetails() {
 
             {/* Add to Cart <| important */}
             <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
-              <Button className="flex-1" disabled={!bike.inStock}>
+              {/* <Button className="flex-1" disabled={!bike.inStock}>
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 Add to Cart
-              </Button>
-              <Button className="flex-1" asChild>
+              </Button> */}
+              <BuyNow
+                productId={bike._id}
+                title={bike.name}
+                quantity={quantity}
+                price={bike.price}
+                email="user@example.com"
+              />
+              {/* <Button className="flex-1" asChild>
                 <Link to="/checkout">Buy Now</Link>
-              </Button>
+              </Button> */}
             </div>
           </div>
 
