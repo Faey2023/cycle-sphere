@@ -1,4 +1,4 @@
-import { GetAllBicyclesParams } from '@/types';
+import { Bicycle, GetAllBicyclesParams } from '@/types';
 import baseApi from './baseApi';
 
 const productApi = baseApi.injectEndpoints({
@@ -38,34 +38,44 @@ const productApi = baseApi.injectEndpoints({
         const queryString = queryParams.toString();
         return queryString ? `/products?${queryString}` : '/products';
       },
+      providesTags: ['Bicycle'],
     }),
     getSingleBicycle: builder.query({
       query: (productId?: string | undefined) => `/products/${productId}`,
     }),
     addBicycle: builder.mutation({
-      query: (data) => ({
-        url: `/products`,
+      query: (data?: Bicycle) => ({
+        url: `/products/create-Bicycle`,
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['Bicycle'],
     }),
     updateBicycle: builder.mutation({
-      query: ({ id, data }) => ({
+      query: ({ id, data }: { id: string; data: Bicycle }) => ({
         url: `/products/${id}`,
         method: 'PATCH',
         body: data,
       }),
+      invalidatesTags: ['Bicycle'],
     }),
     deleteBicycle: builder.mutation({
-      query: (id) => ({
+      query: (id: string) => ({
         url: `/products/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Bicycle'],
     }),
   }),
 });
 
-export const { useGetAllBicycleQuery, useGetSingleBicycleQuery } = productApi;
+export const {
+  useGetAllBicycleQuery,
+  useGetSingleBicycleQuery,
+  useAddBicycleMutation,
+  useUpdateBicycleMutation,
+  useDeleteBicycleMutation,
+} = productApi;
 
 // web API
 //https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
