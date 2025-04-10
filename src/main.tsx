@@ -20,6 +20,8 @@ import CreateBicycleForm from './components/Products/CreateBicycleForm.tsx';
 import UpdateBicycleForm from './components/Products/UpdateBicycleForm.tsx';
 import ProductDetails from './components/Products/ProductDetails.tsx';
 import Order from './pages/Orders/Orders.tsx';
+import Register from './pages/Register.tsx';
+import AuthProvider from './context/AuthProvider.tsx';
 
 const router = createBrowserRouter([
   {
@@ -50,15 +52,15 @@ const router = createBrowserRouter([
         element: <Checkout />,
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp' /* TODO */ },
-      { path: '/signIn', element: <SignIn /> }, // Updated route for SignIn
+      { path: '/signUp', element: <Register /> },  // Updated route for Register
+      { path: '/signIn', element: <SignIn /> },  // Updated route for SignIn
 
       { path: '/unauthorized', element: <Unauthorized /> },
 
       // Protected Admin Route
       {
         path: '/admin',
-        element: <RoleProtectedRoute allowedRoles={['admin']} />,
+        element: <RoleProtectedRoute allowedRoles={['admin']} children={undefined} />,
         children: [
           {
             path: '',
@@ -70,7 +72,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'orders',
-            element: <Order />, // Add the UsersManagement route
+            element: <Order />,
           },
         ],
       },
@@ -81,7 +83,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
+      <AuthProvider>
       <RouterProvider router={router} />
+      </AuthProvider>
     </Provider>
   </React.StrictMode>,
 );
