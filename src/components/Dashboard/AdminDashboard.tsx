@@ -72,9 +72,7 @@ const AdminDashboard: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            <h2>
-              Content Should be Here
-            </h2>
+            <h2>Content Should be Here</h2>
           </div>
         </Content>
       </Layout>

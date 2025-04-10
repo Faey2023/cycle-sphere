@@ -52,8 +52,8 @@ const router = createBrowserRouter([
         element: <Checkout />,
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> },  // Updated route for Register
-      { path: '/signIn', element: <SignIn /> },  // Updated route for SignIn
+      { path: '/signUp', element: <Register /> }, // Updated route for Register
+      { path: '/signIn', element: <SignIn /> }, // Updated route for SignIn
 
       { path: '/unauthorized', element: <Unauthorized /> },
 
@@ -84,7 +84,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </AuthProvider>
     </Provider>
   </React.StrictMode>,

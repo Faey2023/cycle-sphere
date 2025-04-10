@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-// Search Bar Skeleton
+// search bar
 function SearchBarSkeleton() {
   return (
     <div className="w-full">
@@ -9,7 +9,7 @@ function SearchBarSkeleton() {
   );
 }
 
-// Filter Sidebar Skeleton
+// filter sidebar
 function FilterSidebarSkeleton() {
   return (
     <div className="mt-4 space-y-4">
@@ -36,7 +36,7 @@ function FilterSidebarSkeleton() {
   );
 }
 
-// Bicycle Card Skeleton
+// bicycle card
 function BCardSkeleton() {
   return (
     <div className="bg-card flex h-full flex-col overflow-hidden rounded-lg border shadow-sm">
@@ -52,23 +52,23 @@ function BCardSkeleton() {
   );
 }
 
-// Main LoadingSkeleton Component
+// main LoadingSkeleton
 export default function LoadingSkeleton() {
   return (
     <div className="container mx-auto p-4">
-      {/* Mobile Drawer Trigger Skeleton - Only visible on small screens */}
+      {/* sm */}
       <div className="mb-4 flex md:hidden">
         <Skeleton className="h-10 w-full rounded-md" />
       </div>
 
       <div className="flex flex-col gap-4 md:flex-row">
-        {/* Sidebar Skeleton - Hidden on mobile, visible on md and up */}
+        {/* md => */}
         <div className="hidden md:block md:w-1/4 lg:w-1/5">
           <SearchBarSkeleton />
           <FilterSidebarSkeleton />
         </div>
 
-        {/* Main Content Skeleton - Full width on mobile, 3/4 on md and up */}
+        {/* main */}
         <div className="w-full md:w-3/4 lg:w-4/5">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {Array(8)
