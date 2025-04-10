@@ -1,5 +1,3 @@
-// UsersManagement.tsx
-import React from 'react';
 import { Table, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { deactivateUser, activateUser } from '../../redux/features/bicycle/auth/authSlice'; // Import the action
@@ -36,7 +34,7 @@ const UsersManagement = () => {
     {
       title: 'Actions',
       key: 'actions',
-      render: (text: string, record: any) => (
+      render: (_text: string, record: any) => (
         <div>
           <Button 
             onClick={() => handleDeactivate(record.id)} 

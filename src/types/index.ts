@@ -5,7 +5,6 @@ export interface Bicycle {
   model: string;
   img: string;
   price: number;
-  _id: string;
 
   // Functional type — defines engineering/design purpose
   type: 'Mountain' | 'Road' | 'Hybrid' | 'BMX' | 'Electric';
