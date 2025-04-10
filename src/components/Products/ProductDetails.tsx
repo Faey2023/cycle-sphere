@@ -1,5 +1,3 @@
-'use client';
-
 import { useGetSingleBicycleQuery } from '@/redux/api/productApi';
 import type { Bicycle } from '@/types';
 import { useNavigate, useParams } from 'react-router-dom';

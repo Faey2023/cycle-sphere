@@ -1,4 +1,3 @@
-'use client';
 import { Edit, Eye, Trash2 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
