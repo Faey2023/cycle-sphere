@@ -49,6 +49,18 @@ export interface GetAllOrderParams {
   totalPrice: number;
 }
 
+export interface TOrder {
+  email: string;
+  title?: string;
+  product: string;
+  quantity: number;
+  status: string;
+  transaction: string;
+  totalPrice: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 // export interface IBicycle {
 //   name: string;
 //   brand: string;
