@@ -22,6 +22,7 @@ import ProductDetails from './components/Products/ProductDetails.tsx';
 import Order from './pages/Orders/Orders.tsx';
 import Register from './pages/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
+import { ToastContainer } from 'react-toastify';
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <ToastContainer />
     <Provider store={store}>
       <AuthProvider>
         <RouterProvider router={router} />

@@ -6,8 +6,7 @@ import { Button, Form, Input } from 'antd';
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"; 
 import AuthContext from '@/context/AuthContext'; // AuthContext import
 import { db } from '@/firebase/firebase.init';
-import { toast } from 'sonner';
-
+import { toast } from 'react-toastify';
 
 const Register: React.FC = () => {
   const { createUser } = useContext(AuthContext);
