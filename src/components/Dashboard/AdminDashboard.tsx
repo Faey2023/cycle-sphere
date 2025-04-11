@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Table, Button } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined, LogoutOutlined } from '@ant-design/icons';
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/firebas/firebase.init'; // Ensure Firestore is imported from firebase.init.ts
 import { collection, getDocs } from 'firebase/firestore';
-import { signOut } from 'firebase/auth'; // Import signOut from Firebase
-import { auth } from '@/firebas/firebase.init'; // Ensure auth is imported
-import UpdateRole from './UpdateRole'; // 
+
 
 const { Header, Content, Sider } = Layout;
 
@@ -34,7 +32,7 @@ const menuItems = [
     key: '4',
     icon: <UserOutlined />,
     label: 'Orders',
-    link: '/admin/orders',
+    link: '/admin',
   },
 ];
 
@@ -74,47 +72,18 @@ const AdminDashboard: React.FC = () => {
     }
   }, [isAdmin]);
 
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
-      title: 'Role',
-      dataIndex: 'role',
-      key: 'role',
-    },
-    {
-      title: 'Actions',
-      key: 'actions',
-      render: (_: any, record: any) => (
-        <UpdateRole userId={record.id} currentRole={record.role} />
-      ),
-    },
-  ];
 
-  // Handle Logout
-  const handleLogout = async () => {
-    try {
-      await signOut(auth); // Sign the user out
-      navigate('/'); // Redirect to the homepage or login page
-    } catch (error) {
-      console.error('Error logging out:', error);
-    }
-  };
+
+ 
 
   if (loading) return <div>Loading...</div>;
   if (!isAdmin) return null; // If not admin, return null
 
+
+
   return (
-    <div className='mt-1'>
-      <Layout className="h-full">
+    <div className='mt-1 h-[500px]'>
+      <Layout className='h-full'>
       <Sider>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
           {menuItems.map(item => (
@@ -127,25 +96,10 @@ const AdminDashboard: React.FC = () => {
       <Layout>
         <Header style={{ padding: 16, display: 'flex', justifyContent: 'space-between' }}>
           <h2>Admin Dashboard</h2>
-          <Button
-            type="primary"
-            icon={<LogoutOutlined />}
-            onClick={handleLogout}
-            style={{ marginRight: '16px' }}
-          >
-            Logout
-          </Button>
+          
         </Header>
         <Content style={{ margin: '24px 16px 0' }}>
-          <div style={{ padding: 24, minHeight: 360, background: '#fff' }}>
-            <h2>Users Management</h2>
-            <Table
-              dataSource={users}
-              columns={columns}
-              rowKey="id"
-              loading={tableLoading}
-            />
-          </div>
+        <Outlet />
         </Content>
       </Layout>
     </Layout>

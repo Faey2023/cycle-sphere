@@ -13,10 +13,11 @@ import AdminDashboard from './components/Dashboard/AdminDashboard.tsx';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
 import SignIn from './pages/SignIn';  
-import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
+import UsersManagement from './components/Dashboard/UsersManagement.tsx';
 import Register from './pages/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
-
+import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
+import ProductManagement from './components/Dashboard/ProductManagement.tsx';
 
 const router = createBrowserRouter([
   {
@@ -49,26 +50,50 @@ const router = createBrowserRouter([
         ),
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> },  // Updated route for Register
-      { path: '/signIn', element: <SignIn /> },  // Updated route for SignIn
-
-      { path: '/unauthorized', element: <Unauthorized /> },
-
-      // Protected Admin Route
+      { path: '/signUp', element: <Register /> },
+      { path: '/signIn', element: <SignIn /> },
+      
+      {
+        path: '/user',
+        element: (
+          <RoleProtectedRoute allowedRoles={['customer']}>
+            <UserDashBoard />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: '/unauthorized',
+        element: <Unauthorized />,
+      },
       {
         path: '/admin',
         element: (
-          <RoleProtectedRoute allowedRoles={['admin']} children={<AdminDashboard />} />
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </RoleProtectedRoute>
         ),
         children: [
           {
             path: 'users-management',
             element: (
-              <RoleProtectedRoute allowedRoles={['admin']} children={<UsersManagement />} />
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UsersManagement />
+              </RoleProtectedRoute>
+            ),
+
+            
+          },
+
+          {
+            path: 'products',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <ProductManagement />
+              </RoleProtectedRoute>
             ),
           },
         ],
-      },
+      }
     ],
   },
 ]);
@@ -77,7 +102,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </AuthProvider>
     </Provider>
   </React.StrictMode>,

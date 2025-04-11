@@ -1,9 +1,12 @@
+// AuthContext.tsx
 import { createContext, useContext } from "react";
 
+// Updated AuthInfo interface with isCustomer
 interface AuthInfo {
     user: any;
     loading: boolean;
     isAdmin: boolean;
+    isCustomer: boolean; // Add isCustomer here
     createUser: (email: string, password: string) => Promise<any>;
     loginUser: (email: string, password: string) => Promise<any>;
 }
@@ -19,4 +22,3 @@ export const useAuth = (): AuthInfo => {
 };
 
 export default AuthContext;
-

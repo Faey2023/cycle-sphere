@@ -6,10 +6,12 @@ import { toast } from 'react-toastify';
 import AuthContext from '@/context/AuthContext';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '@/firebas/firebase.init';  // adjust path to your Firebase config
+import { useLocation } from 'react-router';
 
 const SignIn: React.FC = () => {
   const { loginUser } = useContext(AuthContext);
   const [form] = Form.useForm();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const onFinish = async (values: any) => {
@@ -31,6 +33,9 @@ const SignIn: React.FC = () => {
         setTimeout(() => {
           if (userData.role?.toLowerCase() === "admin") {
             navigate("/admin");
+          } else if (userData.role?.toLowerCase() === "customer") {
+            const from = location.state?.from?.pathname || "/user";
+            navigate(from);
           } else {
             navigate("/");
           }

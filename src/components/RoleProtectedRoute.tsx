@@ -1,21 +1,32 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext';  // Import your context to check role
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
 
-const RoleProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { isAdmin, loading } = useAuth(); // Use the hook to get the context value
+interface RoleProtectedRouteProps {
+  children: React.ReactNode;
+  allowedRoles: string[];
+}
 
-  // If the auth state is still loading, you can show a loading spinner or message
+const RoleProtectedRoute: React.FC<RoleProtectedRouteProps> = ({ children, allowedRoles }) => {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // If the user is not an admin, redirect to a different page
-  if (!isAdmin) {
-    return <Navigate to="/" />;
+  // If not logged in
+  if (!user) {
+    return <Navigate to="/signIn" state={{ from: location }} replace />;
   }
 
-  return <>{children}</>; // Render the children if the user is an admin
+  // If logged in but role is not allowed
+  if (!allowedRoles.includes(user.role)) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  // User is allowed
+  return <>{children}</>;
 };
 
 export default RoleProtectedRoute;

@@ -5,7 +5,7 @@ const Unauthorized = () => {
   const navigate = useNavigate();
 
   const handleGoToSignIn = () => {
-    navigate('/signIn'); // Redirects to the sign-in page
+    navigate('/'); // Redirects to the sign-in page
   };
 
   return (
@@ -17,7 +17,7 @@ const Unauthorized = () => {
         className="mt-4"
         onClick={handleGoToSignIn}
       >
-        Go to Sign In
+        Dushtami Kore na Bro 😅
       </Button>
     </div>
   );
