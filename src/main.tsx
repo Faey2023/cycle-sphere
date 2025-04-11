@@ -45,11 +45,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/Products/details/:id',
-        element: <ProductDetails />,
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+            <ProductDetails />
+          </RoleProtectedRoute>
+        ),
       },
       {
         path: '/checkout',
-        element: <Checkout />,
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+            <Checkout />
+          </RoleProtectedRoute>
+        ),
       },
       { path: '/aboutUs', element: <AboutUs /> },
       { path: '/signUp', element: <Register /> }, // Updated route for Register

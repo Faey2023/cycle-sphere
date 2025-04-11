@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'; // Corrected import
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
-import AuthContext from '@/context/AuthContext'; // Corrected import
+import { useAuth } from '@/context/AuthContext';
 
 const Register: React.FC = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser } = useAuth();
+  // const { createUser } = useContext(AuthContext);
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
