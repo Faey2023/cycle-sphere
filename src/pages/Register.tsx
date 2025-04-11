@@ -1,12 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
-import { useAuth } from '@/context/AuthContext';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { useAuth } from '@/context/AuthContext'; // AuthContext import
+import { db } from '@/firebase/firebase.init';
+import { toast } from 'react-toastify';
 
 const Register: React.FC = () => {
   const { createUser } = useAuth();
-  // const { createUser } = useContext(AuthContext);
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
@@ -14,10 +17,26 @@ const Register: React.FC = () => {
 
     createUser(email, password) // Pass email and password to the createUser function
       .then((result: any) => {
-        console.log(result.user); // Handle the result (user created)
+        const user = result.user;
+
+        const userRef = doc(db, 'users', user.uid); // Use Firestore `doc` to get the reference
+
+        return setDoc(userRef, {
+          uid: user.uid,
+          name,
+          email,
+          role: 'customer',
+          createdAt: serverTimestamp(),
+        });
+      })
+      .then(() => {
+        toast.success('Successfully registered!');
+        form.resetFields();
+        setTimeout(() => navigate('/signIn'), 900);
       })
       .catch((error: any) => {
-        console.error(error.message); // Handle any error that occurs
+        console.error(error.message);
+        toast.error(error.message); // Handle any error that occurs
       });
   };
 
