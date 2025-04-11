@@ -1,28 +1,47 @@
+import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { toast } from 'react-toastify';
-import { useAuth } from '@/context/AuthContext';
+import AuthContext from '@/context/AuthContext';
+import { doc, getDoc } from "firebase/firestore";
+import { db } from '@/firebas/firebase.init';  // adjust path to your Firebase config
 
 const SignIn: React.FC = () => {
-  const { loginUser } = useAuth(); 
+  const { loginUser } = useContext(AuthContext);
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const onFinish = (values: any) => {
+  const onFinish = async (values: any) => {
     const { email, password } = values;
-
-    loginUser(email, password)
-      .then((result: any) => {
-        console.log(result.user);
+  
+    try {
+      const result = await loginUser(email, password);
+      const user = result.user;
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
+  
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        console.log("User data from Firestore:", userData);
+  
         toast.success("Successfully signed in!");
         form.resetFields();
-        setTimeout(() => navigate('/'), 1500);
-      })
-      .catch((error: any) => {
-        console.error(error.message);
-        toast.error("Invalid email or password.");
-      });
+  
+        setTimeout(() => {
+          if (userData.role?.toLowerCase() === "admin") {
+            navigate("/admin");
+          } else {
+            navigate("/");
+          }
+        }, 1500);
+      } else {
+        toast.error("User role not found.");
+      }
+    } catch (error: any) {
+      console.error(error.message);
+      toast.error("Invalid email or password.");
+    }
   };
 
   return (

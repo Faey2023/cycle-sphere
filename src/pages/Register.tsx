@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { toast } from 'react-toastify';
 import { doc, setDoc, serverTimestamp } from "firebase/firestore"; 
-import { useAuth } from '@/context/AuthContext'; // Use the custom hook
+import AuthContext from '@/context/AuthContext'; // AuthContext import
 import { db } from '@/firebas/firebase.init'; 
 
 
 const Register: React.FC = () => {
-  const { createUser } = useAuth(); // ✅ Use custom hook instead of useContext
+  const { createUser } = useContext(AuthContext);
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -20,14 +20,15 @@ const Register: React.FC = () => {
       .then((result: any) => {
         const user = result.user;
 
-        const userRef = doc(db, "users", user.uid);
+        
+        const userRef = doc(db, "users", user.uid); // Use Firestore `doc` to get the reference
 
         return setDoc(userRef, {
           uid: user.uid,
           name,
           email,
-          role: "customer",
-          createdAt: serverTimestamp()
+          role: "customer", 
+          createdAt: serverTimestamp() 
         });
       })
       .then(() => {
