@@ -27,7 +27,7 @@ export default function BicycleDetails() {
   const { data: bicycles } = useGetAllBicycleQuery('');
   const [quantity, setQuantity] = useState(1);
   // console.log('i from ', bicycles?.data);
-  console.log('data', data);
+  // console.log('data', data);
 
   const incrementQuantity = () => {
     if (bike && quantity < bike.quantity) {

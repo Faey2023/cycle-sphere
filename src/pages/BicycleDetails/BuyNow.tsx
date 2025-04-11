@@ -26,11 +26,16 @@ const BuyNow = ({ productId, title, quantity, price }: BuyNowButtonProps) => {
         totalPrice: quantity * price,
       };
 
-      const response = await createOrder(orderData).unwrap();
+      const res = await createOrder(orderData).unwrap();
 
       toast.success('Order placed successfully!');
 
-      navigate('/checkout', { state: { order: response } });
+      navigate('/checkout', {
+        state: {
+          order: res,
+          paymentUrl: res.payment.checkout_url,
+        },
+      });
     } catch (error) {
       console.error('Order failed:', error);
       toast.error('Failed to place order');

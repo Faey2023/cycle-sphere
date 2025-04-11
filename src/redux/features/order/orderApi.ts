@@ -18,8 +18,20 @@ const orderApi = baseApi.injectEndpoints({
     getOrdersByEmail: builder.query({
       query: (email: string) => `/orders?email=${email}`,
     }),
+    verifyOrder: builder.query({
+      query: (order_id) => ({
+        url: '/orders/verify',
+        params: { order_id },
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { usePlaceOrderMutation, useGetAllOrderQuery, useGetOrdersByEmailQuery } = orderApi;
+export const {
+  usePlaceOrderMutation,
+  useGetAllOrderQuery,
+  useGetOrdersByEmailQuery,
+  useVerifyOrderQuery,
+} = orderApi;
 export default orderApi;
