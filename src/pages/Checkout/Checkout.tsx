@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useGetSingleBicycleQuery } from '@/redux/api/productApi';
 import { Bicycle, TOrder } from '@/types';
-import { toast } from 'sonner';
+import { toast } from 'react-toastify';
 
 const Checkout = () => {
   const location = useLocation();
