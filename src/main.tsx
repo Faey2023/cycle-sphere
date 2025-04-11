@@ -12,11 +12,16 @@ import BicycleDetails from './pages/BicycleDetails/BicycleDetails.tsx';
 import AdminDashboard from './components/Dashboard/AdminDashboard.tsx';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
-import SignIn from './pages/SignIn';  
-import UsersManagement from './components/Dashboard/UsersManagement.tsx';
+import SignIn from './pages/SignIn'; // Import the SignIn component
+import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
+import Checkout from './pages/Checkout/Checkout.tsx';
+import Products from './components/Products/Products.tsx';
+import CreateBicycleForm from './components/Products/CreateBicycleForm.tsx';
+import UpdateBicycleForm from './components/Products/UpdateBicycleForm.tsx';
+import ProductDetails from './components/Products/ProductDetails.tsx';
+import Order from './pages/Orders/Orders.tsx';
 import Register from './pages/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
-
 
 const router = createBrowserRouter([
   {
@@ -27,43 +32,55 @@ const router = createBrowserRouter([
       { path: '/allBicycles', element: <AllBicycles /> },
       { path: '/bicycles/:id', element: <BicycleDetails /> },
       {
+        path: '/Products',
+        element: <Products />,
+      },
+      {
+        path: '/Products/add',
+        element: <CreateBicycleForm />,
+      },
+      {
+        path: '/Products/edit/:id',
+        element: <UpdateBicycleForm />,
+      },
+      {
+        path: '/Products/details/:id',
+        element: (
+          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+          <ProductDetails />
+          // </RoleProtectedRoute>
+        ),
+      },
+      {
         path: '/checkout',
         element: (
-          <div className="mx-auto max-w-5xl p-6">
-            <h1 className="mb-4 text-3xl font-bold">Checkout Page</h1>
-            <div className="space-y-4">
-              <p><strong>Order Summary</strong></p>
-              <div className="rounded-xl bg-gray-100 p-4">
-                <h2 className="text-xl font-bold">Your Cart</h2>
-                <ul>
-                  <li>Item 1 - Price: $1200</li>
-                  <li>Item 2 - Price: $800</li>
-                </ul>
-                <div className="mt-4"><p><strong>Total: </strong>$2000</p></div>
-              </div>
-              <div className="mt-4">
-                <button className="w-full rounded-xl bg-blue-600 py-2 text-white">Proceed to Payment</button>
-              </div>
-            </div>
-          </div>
+          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+          <Checkout />
+          // </RoleProtectedRoute>
         ),
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> },
-      { path: '/signIn', element: <SignIn /> },
+      { path: '/signUp', element: <Register /> }, // Updated route for Register
+      { path: '/signIn', element: <SignIn /> }, // Updated route for SignIn
+
       { path: '/unauthorized', element: <Unauthorized /> },
 
+      // Protected Admin Route
       {
         path: '/admin',
-        element: (
-          <RoleProtectedRoute allowedRoles={['admin']} children={<AdminDashboard />} />
-        ),
+        element: <RoleProtectedRoute allowedRoles={['admin']} children={undefined} />,
         children: [
           {
+            path: '',
+            element: <AdminDashboard />,
+          },
+          {
             path: 'users-management',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']} children={<UsersManagement />} />
-            ),
+            element: <UsersManagement />, // Add the UsersManagement route
+          },
+          {
+            path: 'orders',
+            element: <Order />,
           },
         ],
       },

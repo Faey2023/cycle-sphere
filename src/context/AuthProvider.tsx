@@ -1,19 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { auth, db } from "../firebas/firebase.init"; // Firebase auth and db
+import React, { useState, useEffect } from 'react';
+import { auth, db } from '@/firebase/firebase.init';
+// Firebase auth and db
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-} from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import AuthContext from "./AuthContext"; // Import the AuthContext
+  UserCredential,
+} from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import AuthContext from './AuthContext'; // Import the AuthContext
+
+interface CustomUser {
+  name: string;
+  email: string;
+  password: string;
+}
 
 interface AuthInfo {
-  user: any;
+  user: CustomUser;
   loading: boolean;
   isAdmin: boolean;
-  createUser: (email: string, password: string) => Promise<any>;
-  loginUser: (email: string, password: string) => Promise<any>;
+  createUser: (email: string, password: string) => Promise<UserCredential>;
+  loginUser: (email: string, password: string) => Promise<UserCredential>;
 }
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -40,13 +48,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (currentUser) {
         // If a user is authenticated, fetch user data from Firestore
-        const userRef = doc(db, "users", currentUser.uid); // Reference to the user's Firestore document
+        const userRef = doc(db, 'users', currentUser.uid); // Reference to the user's Firestore document
         const userDoc = await getDoc(userRef); // Get the document
 
         if (userDoc.exists()) {
           const userData = userDoc.data(); // Extract user data from Firestore
           setUser({ ...userData, uid: currentUser.uid }); // Store user data including the UID
-          setIsAdmin(userData.role === "admin"); // Set isAdmin based on the user's role
+          setIsAdmin(userData.role === 'admin'); // Set isAdmin based on the user's role
         } else {
           setUser(currentUser); // If no Firestore data exists, store the Firebase user object
           setIsAdmin(false); // Default to non-admin

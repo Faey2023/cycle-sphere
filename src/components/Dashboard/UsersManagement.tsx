@@ -1,6 +1,6 @@
+import { deactivateUser,activateUser } from '@/redux/features/auth/authSlice';
 import { Table, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { deactivateUser, activateUser } from '../../redux/features/bicycle/auth/authSlice'; // Import the action
 
 const UsersManagement = () => {
   const dispatch = useDispatch();

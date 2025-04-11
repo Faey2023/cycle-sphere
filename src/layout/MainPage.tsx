@@ -1,8 +1,6 @@
 import Footer from '@/components/shared/Footer/Footer';
 import Navbar from '@/components/shared/Navbar/Navbar';
-import { Outlet } from 'react-router';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Outlet } from 'react-router-dom';
 
 const MainPage = () => {
   return (
@@ -10,7 +8,6 @@ const MainPage = () => {
       <Navbar />
       <Outlet />
       <Footer />
-      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 };

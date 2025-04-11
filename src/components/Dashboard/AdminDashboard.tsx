@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, Menu, Table, Button } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined, LogoutOutlined } from '@ant-design/icons';
+import {
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons';
 import { useAuth } from '@/context/AuthContext';
-import { db } from '@/firebas/firebase.init'; // Ensure Firestore is imported from firebase.init.ts
+import { db } from '@/firebase/firebase.init'; // Ensure Firestore is imported from firebase.init.ts
 import { collection, getDocs } from 'firebase/firestore';
 import { signOut } from 'firebase/auth'; // Import signOut from Firebase
-import { auth } from '@/firebas/firebase.init'; // Ensure auth is imported
-import UpdateRole from './UpdateRole'; // 
+import { auth } from '@/firebase/firebase.init'; // Ensure auth is imported
+import UpdateRole from './UpdateRole'; //
 
 const { Header, Content, Sider } = Layout;
 
@@ -47,7 +52,7 @@ const AdminDashboard: React.FC = () => {
   // Redirect if not admin
   useEffect(() => {
     if (!loading && !isAdmin) {
-      navigate('/');  
+      navigate('/');
     }
   }, [loading, isAdmin, navigate]);
 
@@ -57,7 +62,7 @@ const AdminDashboard: React.FC = () => {
       try {
         const usersCollection = collection(db, 'users');
         const snapshot = await getDocs(usersCollection);
-        const userList = snapshot.docs.map(doc => ({
+        const userList = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
@@ -93,9 +98,7 @@ const AdminDashboard: React.FC = () => {
     {
       title: 'Actions',
       key: 'actions',
-      render: (_: any, record: any) => (
-        <UpdateRole userId={record.id} currentRole={record.role} />
-      ),
+      render: (_: any, record: any) => <UpdateRole userId={record.id} currentRole={record.role} />,
     },
   ];
 
@@ -113,42 +116,37 @@ const AdminDashboard: React.FC = () => {
   if (!isAdmin) return null; // If not admin, return null
 
   return (
-    <div className='mt-1'>
+    <div className="mt-1">
       <Layout className="h-full">
-      <Sider>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
-          {menuItems.map(item => (
-            <Menu.Item key={item.key} icon={item.icon}>
-              <Link to={item.link}>{item.label}</Link>
-            </Menu.Item>
-          ))}
-        </Menu>
-      </Sider>
-      <Layout>
-        <Header style={{ padding: 16, display: 'flex', justifyContent: 'space-between' }}>
-          <h2>Admin Dashboard</h2>
-          <Button
-            type="primary"
-            icon={<LogoutOutlined />}
-            onClick={handleLogout}
-            style={{ marginRight: '16px' }}
-          >
-            Logout
-          </Button>
-        </Header>
-        <Content style={{ margin: '24px 16px 0' }}>
-          <div style={{ padding: 24, minHeight: 360, background: '#fff' }}>
-            <h2>Users Management</h2>
-            <Table
-              dataSource={users}
-              columns={columns}
-              rowKey="id"
-              loading={tableLoading}
-            />
-          </div>
-        </Content>
+        <Sider>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
+            {menuItems.map((item) => (
+              <Menu.Item key={item.key} icon={item.icon}>
+                <Link to={item.link}>{item.label}</Link>
+              </Menu.Item>
+            ))}
+          </Menu>
+        </Sider>
+        <Layout>
+          <Header style={{ padding: 16, display: 'flex', justifyContent: 'space-between' }}>
+            <h2>Admin Dashboard</h2>
+            <Button
+              type="primary"
+              icon={<LogoutOutlined />}
+              onClick={handleLogout}
+              style={{ marginRight: '16px' }}
+            >
+              Logout
+            </Button>
+          </Header>
+          <Content style={{ margin: '24px 16px 0' }}>
+            <div style={{ padding: 24, minHeight: 360, background: '#fff' }}>
+              <h2>Users Management</h2>
+              <Table dataSource={users} columns={columns} rowKey="id" loading={tableLoading} />
+            </div>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
     </div>
   );
 };

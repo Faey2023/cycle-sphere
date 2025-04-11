@@ -5,7 +5,7 @@ export interface IFilter {
   brand?: string;
   model?: string;
   category?: string;
-  availability?: 'inStock' | 'upcoming' | 'all';
+  availability?: boolean | 'all';
 }
 
 export interface IInitialState {
@@ -34,9 +34,13 @@ const bicycleSlice = createSlice({
     setFilters: (state, action: PayloadAction<Partial<IFilter>>) => {
       state.filters = { ...state.filters, ...action.payload };
     },
+    resetFilters: (state) => {
+      state.filters = initialState.filters;
+      state.search = '';
+    },
   },
 });
 
-export const { setSearch, setFilters } = bicycleSlice.actions;
+export const { setSearch, setFilters, resetFilters } = bicycleSlice.actions;
 
 export default bicycleSlice.reducer;

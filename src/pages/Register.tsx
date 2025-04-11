@@ -1,67 +1,49 @@
 import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
-import { toast } from 'react-toastify';
-import { doc, setDoc, serverTimestamp } from "firebase/firestore"; 
-import { useAuth } from '@/context/AuthContext'; // Use the custom hook
-import { db } from '@/firebas/firebase.init'; 
-
+import { useAuth } from '@/context/AuthContext';
 
 const Register: React.FC = () => {
-  const { createUser } = useAuth(); // ✅ Use custom hook instead of useContext
-  const [form] = Form.useForm();
-  const navigate = useNavigate();
+  const { createUser } = useAuth();
+  // const { createUser } = useContext(AuthContext);
 
   const onFinish = (values: any) => {
-    const { name, email, password } = values;
+    console.log('Received values of form: ', values);
+    const { email, password } = values; // Extract email and password from form values
 
-    createUser(email, password)
+    createUser(email, password) // Pass email and password to the createUser function
       .then((result: any) => {
-        const user = result.user;
-
-        const userRef = doc(db, "users", user.uid);
-
-        return setDoc(userRef, {
-          uid: user.uid,
-          name,
-          email,
-          role: "customer",
-          createdAt: serverTimestamp()
-        });
-      })
-      .then(() => {
-        toast.success("Successfully registered!");
-        form.resetFields(); 
-        setTimeout(() => navigate('/signIn'), 900); 
+        console.log(result.user); // Handle the result (user created)
       })
       .catch((error: any) => {
-        console.error(error.message);
-        toast.error(error.message); 
+        console.error(error.message); // Handle any error that occurs
       });
   };
 
   return (
-    <div className='flex justify-center my-16 mx-auto'>
+    <div className="mx-auto my-16 flex justify-center">
       <Form
-        form={form}
         name="register"
         initialValues={{ remember: true }}
         style={{ maxWidth: 360 }}
         onFinish={onFinish}
       >
-        <Form.Item
-          name="name"
-          rules={[{ required: true, message: 'Please input your Username!' }]}
-        >
+        <Form.Item name="name" rules={[{ required: true, message: 'Please input your Username!' }]}>
           <Input prefix={<UserOutlined />} placeholder="Name" />
         </Form.Item>
 
         <Form.Item
           name="email"
           rules={[
-            { type: 'email', message: 'The input is not a valid E-mail!' },
-            { required: true, message: 'Please input your E-mail!' },
+            {
+              type: 'email',
+              message: 'The input is not a valid E-mail!',
+            },
+            {
+              required: true,
+              message: 'Please input your E-mail!',
+            },
           ]}
         >
           <Input prefix={<MailOutlined />} placeholder="Email" />
@@ -70,19 +52,22 @@ const Register: React.FC = () => {
         <Form.Item
           name="password"
           rules={[
-            { required: true, message: 'Please input your Password!' },
             {
-              pattern: /^(?=.*[A-Z])/,
+              required: true,
+              message: 'Please input your Password!',
+            },
+            {
+              pattern: /^(?=.*[A-Z])/, // At least one uppercase letter
               message: 'Password must contain at least one uppercase letter',
             },
             {
-              pattern: /^(?=.*\d)/,
+              pattern: /^(?=.*\d)/, // At least one number
               message: 'Password must contain at least one number',
             },
             {
               min: 8,
               message: 'Password must be at least 8 characters long',
-            }
+            },
           ]}
         >
           <Input prefix={<LockOutlined />} type="password" placeholder="Password" />

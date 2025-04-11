@@ -1,11 +1,12 @@
 import { setFilters } from '@/redux/features/bicycle/bicycleSlice';
-import { useAppDispatch } from '@/redux/hook';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { Card, CardContent } from '../ui/card';
 import { Slider } from '../ui/slider';
 import { useState } from 'react';
 import { Checkbox } from '../ui/checkbox';
-import { useGetAllBicycleQuery } from '@/redux/api/baseApi';
+import { Button } from '../ui/button';
 import { Bicycle } from '@/types';
+import { useGetAllBicycleQuery } from '@/redux/api/productApi';
 
 export type TBrand = {
   brand: string[];
@@ -13,33 +14,38 @@ export type TBrand = {
 
 export default function FilterSidebar() {
   const dispatch = useAppDispatch();
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
-  //   const [availability, setAvailability] = useState(false);
+  const { filters } = useAppSelector((state) => state.bicycles);
+
+  // filters state
+  const [priceRange, setPriceRange] = useState<[number, number]>(filters.price);
+  const [selectedBrand, setSelectedBrand] = useState<string>(filters.brand || '');
+  const [selectedModel, setSelectedModel] = useState<string>(filters.model || '');
+  const [selectedCategory, setSelectedCategory] = useState<string>(filters.category || '');
+  const [inStock, setInStock] = useState<boolean | 'all'>(filters.availability || 'all');
+
+  // Get all bicycles for filter options
   const { data, isLoading } = useGetAllBicycleQuery('');
 
-  //
-  const uniqueBrand: string[] = Array.from(
-    new Set(data?.data.map((bicycle: Bicycle) => bicycle.brand)),
-  );
-  const uniqueMode: string[] = Array.from(
-    new Set(data?.data.map((bicycle: Bicycle) => bicycle.model)),
-  );
-  const uniqueCategory: string[] = Array.from(
-    new Set(data?.data.map((bicycle: Bicycle) => bicycle.category)),
-  );
-  const uniqueAvailability: string[] = Array.from(
-    new Set(data?.data.map((bicycle: Bicycle) => bicycle.inStock)),
-  );
-  console.log('Unique brands: ', uniqueBrand, uniqueMode, uniqueCategory, uniqueAvailability);
+  // unique values for filters
+  const uniqueBrands: string[] = data?.data
+    ? Array.from(new Set(data.data.map((bicycle: Bicycle) => bicycle.brand)))
+    : [];
 
-  console.log('im from filter page', data?.data);
-  // Price Slider
+  const uniqueModels: string[] = data?.data
+    ? Array.from(new Set(data.data.map((bicycle: Bicycle) => bicycle.model)))
+    : [];
+
+  const uniqueCategories: string[] = data?.data
+    ? Array.from(new Set(data.data.map((bicycle: Bicycle) => bicycle.category)))
+    : [];
+
+  // Price slider
   const handleSliderChange = (value: [number, number]) => {
     setPriceRange(value);
     dispatch(setFilters({ price: value }));
   };
 
-  // Price Inputs
+  // price inputs
   const handleInputChange = (index: number, value: number) => {
     const newRange: [number, number] = [...priceRange];
     newRange[index] = value;
@@ -47,13 +53,92 @@ export default function FilterSidebar() {
     dispatch(setFilters({ price: newRange }));
   };
 
+  // Brand Selection
+  const handleBrandChange = (brand: string) => {
+    let newBrand;
+
+    if (selectedBrand === brand) {
+      newBrand = ''; // Deselect
+    } else {
+      newBrand = brand; // Select
+    }
+
+    setSelectedBrand(newBrand);
+    dispatch(setFilters({ brand: newBrand }));
+  };
+
+  // Model Selection
+  const handleModelChange = (model: string) => {
+    let newModel;
+
+    if (selectedModel === model) {
+      newModel = '';
+    } else {
+      newModel = model;
+    }
+
+    setSelectedModel(newModel);
+    dispatch(setFilters({ model: newModel }));
+  };
+
+  // Category Selection
+  const handleCategoryChange = (category: string) => {
+    let newCategory;
+
+    if (selectedCategory === category) {
+      newCategory = '';
+    } else {
+      newCategory = category;
+    }
+
+    setSelectedCategory(newCategory);
+    dispatch(setFilters({ category: newCategory }));
+  };
+
+  // availability Toggling
+  const handleAvailabilityChange = (value: boolean) => {
+    let newAvailability: boolean | 'all';
+
+    if (inStock === value) {
+      newAvailability = 'all';
+    } else {
+      newAvailability = value;
+    }
+
+    setInStock(newAvailability);
+    dispatch(setFilters({ availability: newAvailability }));
+  };
+
+  // Reset filters
+  const handleResetFilters = () => {
+    setPriceRange([0, 10000]);
+    setSelectedBrand('');
+    setSelectedModel('');
+    setSelectedCategory('');
+    setInStock('all');
+    dispatch(
+      setFilters({
+        price: [0, 10000],
+        brand: '',
+        model: '',
+        category: '',
+        availability: 'all',
+      }),
+    );
+  };
+
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <div className="p-4">Loading filters...</div>;
   }
 
   return (
     <div className="mt-4 space-y-4">
-      {/* Price Filter */}
+      {/* reset filters btn */}
+      <Button variant="outline" onClick={handleResetFilters} className="mb-2 w-full">
+        Reset All Filters
+      </Button>
+
+      {/* price filter */}
       <Card className="w-full rounded-2xl p-4 shadow-md">
         <CardContent className="space-y-4">
           <h3 className="text-xl font-bold">Price Range</h3>
@@ -66,7 +151,7 @@ export default function FilterSidebar() {
             onValueChange={handleSliderChange}
           />
 
-          <div className="flex h-full w-full flex-col gap-2 md:flex-row">
+          <div className="flex h-full w-full flex-col gap-2 lg:flex-row">
             <input
               type="number"
               value={priceRange[0]}
@@ -74,7 +159,7 @@ export default function FilterSidebar() {
               max={priceRange[1]}
               onChange={(e) => handleInputChange(0, Number(e.target.value))}
               placeholder="Min Price"
-              className="w-full rounded border p-2 md:w-1/2"
+              className="w-full rounded border p-2"
             />
             <input
               type="number"
@@ -83,7 +168,7 @@ export default function FilterSidebar() {
               max={10000}
               onChange={(e) => handleInputChange(1, Number(e.target.value))}
               placeholder="Max Price"
-              className="w-full rounded border p-2 md:w-1/2"
+              className="w-full rounded border p-2"
             />
           </div>
 
@@ -93,14 +178,18 @@ export default function FilterSidebar() {
         </CardContent>
       </Card>
 
-      {/* Brand Filter */}
+      {/* brand filter */}
       <Card className="w-full rounded-2xl p-4 shadow-md">
         <CardContent className="space-y-4">
           <h3 className="text-xl font-bold">Brand</h3>
           <div className="flex h-full w-full flex-col gap-2">
-            {uniqueBrand.map((brand: string, index: number) => (
+            {uniqueBrands.map((brand: string, index: number) => (
               <div className="flex w-full items-center gap-1" key={index}>
-                <Checkbox />
+                <Checkbox
+                  id={`brand-${index}`}
+                  checked={selectedBrand === brand}
+                  onCheckedChange={() => handleBrandChange(brand)}
+                />
                 <label
                   htmlFor={`brand-${index}`}
                   className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -113,16 +202,20 @@ export default function FilterSidebar() {
         </CardContent>
       </Card>
 
-      {/* Model Filter */}
+      {/* model filter */}
       <Card className="w-full rounded-2xl p-4 shadow-md">
         <CardContent className="space-y-4">
           <h3 className="text-xl font-bold">Model</h3>
           <div className="flex h-full w-full flex-col gap-2">
-            {uniqueMode.map((model: string, index: number) => (
+            {uniqueModels.map((model: string, index: number) => (
               <div className="flex w-full items-center gap-1" key={index}>
-                <Checkbox />
+                <Checkbox
+                  id={`model-${index}`}
+                  checked={selectedModel === model}
+                  onCheckedChange={() => handleModelChange(model)}
+                />
                 <label
-                  htmlFor={`brand-${index}`}
+                  htmlFor={`model-${index}`}
                   className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   {model}
@@ -133,16 +226,20 @@ export default function FilterSidebar() {
         </CardContent>
       </Card>
 
-      {/* Category Filter */}
+      {/* Category filter */}
       <Card className="w-full rounded-2xl p-4 shadow-md">
         <CardContent className="space-y-4">
           <h3 className="text-xl font-bold">Category</h3>
           <div className="flex h-full w-full flex-col gap-2">
-            {uniqueCategory.map((category: string, index: number) => (
+            {uniqueCategories.map((category: string, index: number) => (
               <div className="flex w-full items-center gap-1" key={index}>
-                <Checkbox />
+                <Checkbox
+                  id={`category-${index}`}
+                  checked={selectedCategory === category}
+                  onCheckedChange={() => handleCategoryChange(category)}
+                />
                 <label
-                  htmlFor={`brand-${index}`}
+                  htmlFor={`category-${index}`}
                   className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   {category}
@@ -153,27 +250,40 @@ export default function FilterSidebar() {
         </CardContent>
       </Card>
 
-      {/* Availability Switch */}
-      <div className="flex items-center gap-2">
-        <Card className="w-full rounded-2xl p-4 shadow-md">
-          <CardContent className="space-y-4">
-            <h3 className="text-xl font-bold"> availability</h3>
-            <div className="flex h-full w-full flex-col gap-2">
-              {uniqueAvailability.map((inStock: string, index: number) => (
-                <div className="flex w-full items-center gap-1" key={index}>
-                  <Checkbox />
-                  <label
-                    htmlFor={`brand-${index}`}
-                    className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    {inStock ? 'in Stock' : 'out of Stock'}
-                  </label>
-                </div>
-              ))}
+      {/* availability filter */}
+      <Card className="w-full rounded-2xl p-4 shadow-md">
+        <CardContent className="space-y-4">
+          <h3 className="text-xl font-bold">Availability</h3>
+          <div className="flex h-full w-full flex-col gap-2">
+            <div className="flex w-full items-center gap-1">
+              <Checkbox
+                id="instock"
+                checked={inStock === true}
+                onCheckedChange={() => handleAvailabilityChange(true)}
+              />
+              <label
+                htmlFor="instock"
+                className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                In Stock
+              </label>
             </div>
-          </CardContent>
-        </Card>
-      </div>
+            <div className="flex w-full items-center gap-1">
+              <Checkbox
+                id="outofstock"
+                checked={inStock === false}
+                onCheckedChange={() => handleAvailabilityChange(false)}
+              />
+              <label
+                htmlFor="outofstock"
+                className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Out of Stock
+              </label>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

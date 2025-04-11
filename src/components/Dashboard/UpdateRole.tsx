@@ -1,14 +1,15 @@
 import React from 'react';
 import { Button } from 'antd';
-import { db } from '@/firebas/firebase.init';
+import { db } from '@/firebase/firebase.init';
 import { doc, updateDoc } from 'firebase/firestore';
 
-const UpdateRole: React.FC<{ userId: string, currentRole: string }> = ({ userId, currentRole }) => {
+
+const UpdateRole: React.FC<{ userId: string; currentRole: string }> = ({ userId, currentRole }) => {
   const handleUpdateRole = async () => {
     try {
       const userRef = doc(db, 'users', userId);
       await updateDoc(userRef, {
-        role: currentRole === 'admin' ? 'customer' : 'admin',  // Toggle role
+        role: currentRole === 'admin' ? 'customer' : 'admin', // Toggle role
       });
       alert('User role updated successfully!');
     } catch (error) {
