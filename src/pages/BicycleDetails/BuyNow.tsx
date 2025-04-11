@@ -2,8 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { usePlaceOrderMutation } from '@/redux/features/order/orderApi';
 import { Button } from '@/components/ui/button';
 import { toast } from 'react-toastify';
+import AuthContext, { useAuth } from '@/context/AuthContext';
+import { useContext, useEffect } from 'react';
 
-interface BuyNowButtonProps {
+interface BuyNowButtonProps { 
+  inStock: boolean;
   title: string;
   productId: string;
   quantity: number;
@@ -11,17 +14,17 @@ interface BuyNowButtonProps {
   price: number;
 }
 
-const BuyNow = ({ productId, title, quantity, price }: BuyNowButtonProps) => {
+const BuyNow = ({ productId, title, quantity, price, inStock }: BuyNowButtonProps) => {
   const navigate = useNavigate();
-  const [createOrder, { isLoading }] = usePlaceOrderMutation();
+  const [createOrder] = usePlaceOrderMutation();
+  const { user } = useAuth();
 
   const handleBuyNow = async () => {
     try {
       const orderData = {
         product: productId,
         title: title,
-        email: 'testuser@example.com',
-        // email: email,
+        email: user?.email,
         quantity,
         totalPrice: quantity * price,
       };
@@ -43,7 +46,7 @@ const BuyNow = ({ productId, title, quantity, price }: BuyNowButtonProps) => {
   };
 
   return (
-    <Button className="flex-1" onClick={handleBuyNow} disabled={isLoading}>
+    <Button disabled={inStock} className="flex-1" onClick={handleBuyNow}>
       Buy Now
     </Button>
   );

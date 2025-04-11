@@ -2,16 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import {
-  ChevronLeft,
-  Heart,
-  Share2,
-  Minus,
-  Plus,
-  Truck,
-  Shield,
-  RotateCcw,
-} from 'lucide-react';
+import { ChevronLeft, Heart, Share2, Minus, Plus, Truck, Shield, RotateCcw } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -234,6 +225,7 @@ export default function BicycleDetails() {
                 Add to Cart
               </Button> */}
               <BuyNow
+                inStock={!bike.inStock}
                 productId={bike._id}
                 title={bike.name}
                 quantity={quantity}

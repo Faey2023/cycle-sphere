@@ -1,10 +1,10 @@
-import { useGetAllOrderQuery } from '@/redux/features/order/orderApi';
+import { useGetAllOrderQuery, useGetOrdersByEmailQuery } from '@/redux/features/order/orderApi';
 import { GetAllOrderParams } from '@/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
 
 const Order = () => {
-  const { data: order = [], isLoading } = useGetAllOrderQuery({});
+  const { data: order = [], isLoading } = useGetOrdersByEmailQuery({});
   const orderData: GetAllOrderParams[] = order?.data;
   console.log(orderData);
 

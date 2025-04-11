@@ -47,18 +47,22 @@ const router = createBrowserRouter([
       {
         path: '/Products/details/:id',
         element: (
-          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
             <ProductDetails />
-          </RoleProtectedRoute>
+          // </RoleProtectedRoute>
         ),
       },
       {
         path: '/checkout',
         element: (
-          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
             <Checkout />
-          </RoleProtectedRoute>
+          // </RoleProtectedRoute>
         ),
+      },
+      {
+        path: 'orders',
+        element: <Order />,
       },
       { path: '/aboutUs', element: <AboutUs /> },
       { path: '/signUp', element: <Register /> }, // Updated route for Register
@@ -79,10 +83,10 @@ const router = createBrowserRouter([
             path: 'users-management',
             element: <UsersManagement />, // Add the UsersManagement route
           },
-          {
-            path: 'orders',
-            element: <Order />,
-          },
+          // {
+          //   path: 'orders',
+          //   element: <Order />,
+          // },
         ],
       },
     ],
