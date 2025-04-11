@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { toast } from 'react-toastify';
-import AuthContext from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
 
 const SignIn: React.FC = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser } = useAuth(); 
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
@@ -18,7 +17,7 @@ const SignIn: React.FC = () => {
         console.log(result.user);
         toast.success("Successfully signed in!");
         form.resetFields();
-        setTimeout(() => navigate('/'), 1500); 
+        setTimeout(() => navigate('/'), 1500);
       })
       .catch((error: any) => {
         console.error(error.message);

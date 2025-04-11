@@ -13,7 +13,7 @@ import AdminDashboard from './components/Dashboard/AdminDashboard.tsx';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
 import SignIn from './pages/SignIn';  
-import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
+import UsersManagement from './components/Dashboard/UsersManagement.tsx';
 import Register from './pages/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
 
@@ -49,12 +49,10 @@ const router = createBrowserRouter([
         ),
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> },  // Updated route for Register
-      { path: '/signIn', element: <SignIn /> },  // Updated route for SignIn
-
+      { path: '/signUp', element: <Register /> },
+      { path: '/signIn', element: <SignIn /> },
       { path: '/unauthorized', element: <Unauthorized /> },
 
-      // Protected Admin Route
       {
         path: '/admin',
         element: (
@@ -77,7 +75,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
       <AuthProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </AuthProvider>
     </Provider>
   </React.StrictMode>,
