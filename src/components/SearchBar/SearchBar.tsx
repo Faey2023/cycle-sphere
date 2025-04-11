@@ -13,7 +13,7 @@ export default function SearchBar() {
     setInput(value);
   };
 
-  // automatically dispatch when input is cleared
+  // Automatically dispatch when input is cleared
   useEffect(() => {
     if (input.trim() === '') {
       dispatch(setSearch('')); // fetch all again

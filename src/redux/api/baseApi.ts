@@ -1,13 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseApi = createApi({
+export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api',
-    // baseUrl: 'https://bicycle-pedal-paradise.vercel.app/api',
-    credentials: 'include',
+    baseUrl: 'http://localhost:5000/api/products',
   }),
-  tagTypes: ['Bicycle'],
-  endpoints: () => ({}),
+  endpoints: (builder) => ({
+    getAllBicycle: builder.query({
+      query: (searchTerm?: string) => (searchTerm ? `?searchTerm=${searchTerm}` : '/'),
+    }),
+    getSingleBicycle: builder.query({
+      query: (productId?: string | undefined) => `/${productId}`,
+    }),
+  }),
 });
-export default baseApi;
+
+export const { useGetAllBicycleQuery, useGetSingleBicycleQuery } = baseApi;
