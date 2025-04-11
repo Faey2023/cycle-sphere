@@ -80,7 +80,7 @@ const SignIn: React.FC = () => {
           <Button block type="primary" htmlType="submit">
             Log in
           </Button>
-          Or <Link to="/signUp">Register Now!</Link>
+          Or <Link to="/signUp">Register Now Bro!</Link>
         </Form.Item>
       </Form>
     </div>
