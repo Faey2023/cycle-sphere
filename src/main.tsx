@@ -46,17 +46,17 @@ const router = createBrowserRouter([
       {
         path: '/Products/details/:id',
         element: (
-          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-          <ProductDetails />
-          // </RoleProtectedRoute>
+          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+            <ProductDetails />
+          </RoleProtectedRoute>
         ),
       },
       {
         path: '/checkout',
         element: (
-          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-          <Checkout />
-          // </RoleProtectedRoute>
+          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+            <Checkout />
+          </RoleProtectedRoute>
         ),
       },
       { path: '/aboutUs', element: <AboutUs /> },

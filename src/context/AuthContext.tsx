@@ -15,16 +15,14 @@ interface AuthInfo {
   loginUser: (email: string, password: string) => Promise<UserCredential>;
 }
 
-// Create the context with a default value of null
 const AuthContext = createContext<AuthInfo | null>(null);
 
-// Custom hook to access the AuthContext
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+export const useAuth = (): AuthInfo => {
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error("useAuth must be used within an AuthProvider");
+    }
+    return context;
 };
 
 export default AuthContext;
