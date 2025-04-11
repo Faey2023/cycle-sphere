@@ -16,7 +16,7 @@ const orderApi = baseApi.injectEndpoints({
       }),
     }),
     getOrdersByEmail: builder.query({
-      query: (email: string) => `/orders?email=${email}`,
+      query: ({ email }: { email: string }) => `/orders?email=${email}`,
     }),
     verifyOrder: builder.query({
       query: (order_id) => ({

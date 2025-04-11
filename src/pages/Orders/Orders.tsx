@@ -1,10 +1,14 @@
-import { useGetAllOrderQuery, useGetOrdersByEmailQuery } from '@/redux/features/order/orderApi';
+import { useGetOrdersByEmailQuery } from '@/redux/features/order/orderApi';
 import { GetAllOrderParams } from '@/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
+import { skipToken } from '@reduxjs/toolkit/query';
+import { useAuth } from '@/context/AuthContext';
 
 const Order = () => {
-  const { data: order = [], isLoading } = useGetOrdersByEmailQuery({});
+  const { user } = useAuth();
+  const email = user?.email;
+  const { data: order = [], isLoading } = useGetOrdersByEmailQuery(email ? { email } : skipToken);
   const orderData: GetAllOrderParams[] = order?.data;
   console.log(orderData);
 

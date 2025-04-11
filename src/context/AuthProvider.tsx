@@ -9,7 +9,6 @@ import {
 } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import AuthContext from './AuthContext'; // Import the AuthContext
-
 interface CustomUser {
   uid?: string;
   name?: string;
@@ -26,7 +25,7 @@ interface AuthInfo {
 }
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<CustomUser | null>(null);
+  const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true); // Loading state
   const [isAdmin, setIsAdmin] = useState<boolean>(false); // Admin role status
 

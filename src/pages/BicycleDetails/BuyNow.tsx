@@ -2,10 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { usePlaceOrderMutation } from '@/redux/features/order/orderApi';
 import { Button } from '@/components/ui/button';
 import { toast } from 'react-toastify';
-import AuthContext, { useAuth } from '@/context/AuthContext';
-import { useContext, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
 
-interface BuyNowButtonProps { 
+interface BuyNowButtonProps {
   inStock: boolean;
   title: string;
   productId: string;
