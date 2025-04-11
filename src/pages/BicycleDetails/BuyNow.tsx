@@ -11,7 +11,7 @@ interface BuyNowButtonProps {
   price: number;
 }
 
-const BuyNow = ({ productId, title, email, quantity, price }: BuyNowButtonProps) => {
+const BuyNow = ({ productId, title, quantity, price }: BuyNowButtonProps) => {
   const navigate = useNavigate();
   const [createOrder, { isLoading }] = usePlaceOrderMutation();
 

@@ -8,7 +8,6 @@ import {
   Share2,
   Minus,
   Plus,
-  ShoppingCart,
   Truck,
   Shield,
   RotateCcw,
