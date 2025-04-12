@@ -25,6 +25,7 @@ import AuthProvider from './context/AuthProvider.tsx';
 import { ToastContainer } from 'react-toastify';
 import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
 import ProductManagement from './components/Dashboard/ProductManagement.tsx';
+import AllOrders from './pages/AllOrders/AllOrders.tsx';
 
 const router = createBrowserRouter([
   {
@@ -114,12 +115,12 @@ const router = createBrowserRouter([
           },
           {
             path: 'users-management',
-            element: <UsersManagement />, // Add the UsersManagement route
+            element: <UsersManagement />,
           },
-          // {
-          //   path: 'orders',
-          //   element: <Order />,
-          // },
+          {
+            path: 'orders',
+            element: <AllOrders />,
+          },
         ],
       },
     ],
