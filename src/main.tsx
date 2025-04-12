@@ -23,6 +23,8 @@ import Order from './pages/Orders/Orders.tsx';
 import Register from './pages/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
 import { ToastContainer } from 'react-toastify';
+import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
+import ProductManagement from './components/Dashboard/ProductManagement.tsx';
 
 const router = createBrowserRouter([
   {
@@ -47,42 +49,72 @@ const router = createBrowserRouter([
       {
         path: '/Products/details/:id',
         element: (
-          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-            <ProductDetails />
-          </RoleProtectedRoute>
+          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+          <ProductDetails />
+          // </RoleProtectedRoute>
         ),
       },
       {
         path: '/checkout',
         element: (
-          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-            <Checkout />
+          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+          <Checkout />
+          // </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'orders',
+        element: <Order />,
+      },
+      { path: '/aboutUs', element: <AboutUs /> },
+      { path: '/signUp', element: <Register /> },
+      { path: '/signIn', element: <SignIn /> },
+
+      {
+        path: '/user',
+        element: (
+          <RoleProtectedRoute allowedRoles={['customer']}>
+            <UserDashBoard />
           </RoleProtectedRoute>
         ),
       },
-      { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> }, // Updated route for Register
-      { path: '/signIn', element: <SignIn /> }, // Updated route for SignIn
-
-      { path: '/unauthorized', element: <Unauthorized /> },
-
-      // Protected Admin Route
+      {
+        path: '/unauthorized',
+        element: <Unauthorized />,
+      },
       {
         path: '/admin',
-        element: <RoleProtectedRoute allowedRoles={['admin']} children={undefined} />,
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </RoleProtectedRoute>
+        ),
         children: [
           {
-            path: '',
-            element: <AdminDashboard />,
+            path: 'users-management',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UsersManagement />
+              </RoleProtectedRoute>
+            ),
+          },
+
+          {
+            path: 'products',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <ProductManagement />
+              </RoleProtectedRoute>
+            ),
           },
           {
             path: 'users-management',
             element: <UsersManagement />, // Add the UsersManagement route
           },
-          {
-            path: 'orders',
-            element: <Order />,
-          },
+          // {
+          //   path: 'orders',
+          //   element: <Order />,
+          // },
         ],
       },
     ],

@@ -1,26 +1,31 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
+import { useAuth } from '@/context/AuthContext';
 
 interface RoleProtectedRouteProps {
-  allowedRoles: string[]; // List of roles that are allowed to access the route
-  children: React.ReactNode; // The component(s) to render if access is granted
+  children: React.ReactNode;
+  allowedRoles: string[];
 }
 
-const RoleProtectedRoute: React.FC<RoleProtectedRouteProps> = ({ allowedRoles, children }) => {
-  const { user } = useSelector((state: RootState) => state.auth);
+const RoleProtectedRoute: React.FC<RoleProtectedRouteProps> = ({ children, allowedRoles }) => {
+  const { user, loading } = useAuth();
   const location = useLocation();
 
-  // Check if the user is logged in and has the correct role
-  const userHasAccess = user && user.role && allowedRoles.includes(user.role);
-
-  if (!user || !userHasAccess) {
-    // If the user doesn't have the correct role, redirect to the unauthorized page
-    return <Navigate to="/unauthorized" state={{ from: location }} replace />;
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  // Render the children (i.e., the protected content) if the user has the correct role
+  // If not logged in
+  if (!user) {
+    return <Navigate to="/signIn" state={{ from: location }} replace />;
+  }
+
+  // If logged in but role is not allowed
+  if (!allowedRoles.includes(user.role)) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  // User is allowed
   return <>{children}</>;
 };
 
