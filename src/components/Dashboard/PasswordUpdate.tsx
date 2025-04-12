@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState,  } from 'react';
+import { useState } from 'react';
 
 import { Form, Input, Button, notification, Modal } from 'antd';
 import {
@@ -68,10 +68,7 @@ const PasswordUpdate = () => {
           name="newPassword"
           rules={[{ required: true, message: 'Please input your new password!' }]}
         >
-          <Input.Password
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
+          <Input.Password value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
         </Form.Item>
         <Form.Item
           label="Confirm New Password"

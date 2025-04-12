@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-
-  ProductOutlined,
-  ShoppingCartOutlined,
-
-} from '@ant-design/icons';
+import { ProductOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Button, Divider, Flex, Radio } from 'antd';
 import type { ConfigProviderProps } from 'antd';
 import { Link } from 'react-router-dom';
@@ -20,7 +15,6 @@ const UserDash: React.FC = () => {
         <div className="flex justify-center">
           <Flex gap="small" align="flex-start" vertical>
             <Flex gap="small" wrap>
-
               <Button type="primary" icon={<ProductOutlined />} size={size}>
                 <Link to="/user/updatePassword">Profile Setting</Link>
               </Button>
