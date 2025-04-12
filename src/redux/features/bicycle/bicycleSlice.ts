@@ -6,6 +6,8 @@ export interface IFilter {
   model?: string;
   category?: string;
   availability?: boolean | 'all';
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc' | '';
 }
 
 export interface IInitialState {
@@ -21,6 +23,8 @@ const initialState: IInitialState = {
     model: '',
     category: '',
     availability: 'all',
+    sortBy: '',
+    sortOrder: '',
   },
 };
 

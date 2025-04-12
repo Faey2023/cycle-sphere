@@ -37,6 +37,10 @@ export interface GetAllBicyclesParams {
   minPrice?: number;
   maxPrice?: number;
   inStock?: boolean;
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
 }
 
 export interface GetAllOrderParams {

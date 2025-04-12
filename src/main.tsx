@@ -35,19 +35,19 @@ const router = createBrowserRouter([
       { path: '/allBicycles', element: <AllBicycles /> },
       { path: '/bicycles/:id', element: <BicycleDetails /> },
       {
-        path: 'products',
+        path: '/admin/products',
         element: <Products />,
       },
       {
-        path: 'products/add',
+        path: '/admin/products/add',
         element: <CreateBicycleForm />,
       },
       {
-        path: 'products/edit/:id',
+        path: '/admin/products/edit/:id',
         element: <UpdateBicycleForm />,
       },
       {
-        path: 'products/details/:id',
+        path: '/admin/products/details/:id',
         element: (
           // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
           <ProductDetails />

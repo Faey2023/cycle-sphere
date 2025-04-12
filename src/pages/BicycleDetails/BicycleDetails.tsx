@@ -345,10 +345,10 @@ export default function BicycleDetails() {
       <div className="mt-16">
         <h2 className="mb-6 text-2xl font-bold">You Might Also Like</h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {bicycles?.data.length > 0
-            ? bicycles.data
+          {bicycles?.data?.data?.length > 0
+            ? bicycles?.data?.data
                 // showing half of the product
-                .slice(Math.floor(bicycles?.data.length / 2), bicycles.data.length)
+                .slice(Math.floor(bicycles?.data?.data?.length / 2), bicycles?.data?.data?.length)
                 .map((bicycle: Bicycle, i: number) => (
                   <div key={i}>
                     <Card className="overflow-hidden">

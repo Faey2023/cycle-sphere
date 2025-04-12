@@ -15,7 +15,7 @@ const Featured = () => {
     return <div className="py-10 text-center text-lg">Loading featured bicycles...</div>;
   }
 
-  const featuredBikes = bicycles?.data?.slice(0, 6) || [];
+  const featuredBikes = bicycles?.data?.data?.slice(0, 6) || [];
 
   // console.log(featuredBikes);
 

@@ -35,6 +35,14 @@ const productApi = baseApi.injectEndpoints({
           queryParams.append('inStock', params.inStock.toString());
         }
 
+        // sorting
+        if (params.sortBy) queryParams.append('sortBy', params.sortBy);
+        if (params.sortOrder) queryParams.append('sortOrder', params.sortOrder);
+
+        // pagination
+        if (params.page) queryParams.append('page', params.page.toString());
+        if (params.limit) queryParams.append('limit', params.limit.toString());
+
         const queryString = queryParams.toString();
         return queryString ? `/products?${queryString}` : '/products';
       },

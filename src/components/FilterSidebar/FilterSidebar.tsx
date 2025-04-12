@@ -7,6 +7,12 @@ import { Checkbox } from '../ui/checkbox';
 import { Button } from '../ui/button';
 import { Bicycle } from '@/types';
 import { useGetAllBicycleQuery } from '@/redux/api/productApi';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
 
 export type TBrand = {
   brand: string[];
@@ -26,17 +32,21 @@ export default function FilterSidebar() {
   // Get all bicycles for filter options
   const { data, isLoading } = useGetAllBicycleQuery('');
 
+  console.log('data from filter', data);
+
+  console.log(data?.data?.data);
+
   // unique values for filters
-  const uniqueBrands: string[] = data?.data
-    ? Array.from(new Set(data.data.map((bicycle: Bicycle) => bicycle.brand)))
+  const uniqueBrands: string[] = data?.data?.data
+    ? Array.from(new Set(data?.data?.data.map((bicycle: Bicycle) => bicycle.brand)))
     : [];
 
-  const uniqueModels: string[] = data?.data
-    ? Array.from(new Set(data.data.map((bicycle: Bicycle) => bicycle.model)))
+  const uniqueModels: string[] = data?.data?.data
+    ? Array.from(new Set(data?.data?.data.map((bicycle: Bicycle) => bicycle.model)))
     : [];
 
-  const uniqueCategories: string[] = data?.data
-    ? Array.from(new Set(data.data.map((bicycle: Bicycle) => bicycle.category)))
+  const uniqueCategories: string[] = data?.data?.data
+    ? Array.from(new Set(data?.data?.data.map((bicycle: Bicycle) => bicycle.category)))
     : [];
 
   // Price slider
@@ -131,12 +141,39 @@ export default function FilterSidebar() {
     return <div className="p-4">Loading filters...</div>;
   }
 
+  // console.log({ filters });
+
   return (
     <div className="mt-4 space-y-4">
       {/* reset filters btn */}
       <Button variant="outline" onClick={handleResetFilters} className="mb-2 w-full">
         Reset All Filters
       </Button>
+
+      {/* sorting */}
+      <Card className="w-full rounded-2xl p-4 shadow-md">
+        <CardContent className="space-y-4">
+          <h3 className="text-xl font-bold">Sort by Price</h3>
+          <DropdownMenu>
+            <DropdownMenuTrigger>Price</DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem
+                onClick={() => dispatch(setFilters({ sortBy: 'price', sortOrder: 'desc' }))}
+              >
+                High to low
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => dispatch(setFilters({ sortBy: 'price', sortOrder: 'asc' }))}
+              >
+                Low to high
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => dispatch(setFilters({ sortBy: '', sortOrder: '' }))}>
+                Default
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </CardContent>
+      </Card>
 
       {/* price filter */}
       <Card className="w-full rounded-2xl p-4 shadow-md">

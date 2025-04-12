@@ -59,8 +59,8 @@ const UpdateBicycleForm = () => {
   //
   // Populate form when data is loaded
   useEffect(() => {
-    if (bicycleData?.data) {
-      setFormData(bicycleData.data);
+    if (bicycleData?.data?.data) {
+      setFormData(bicycleData.data.data);
     }
   }, [bicycleData]);
 
