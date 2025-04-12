@@ -69,7 +69,6 @@ const router = createBrowserRouter([
       { path: '/aboutUs', element: <AboutUs /> },
       { path: '/signUp', element: <Register /> },
       { path: '/signIn', element: <SignIn /> },
-
       {
         path: '/user',
         element: (
@@ -77,6 +76,12 @@ const router = createBrowserRouter([
             <UserDashBoard />
           </RoleProtectedRoute>
         ),
+        children: [
+          {
+            path: 'orders',
+            element: <Order />,
+          },
+        ],
       },
       {
         path: '/unauthorized',

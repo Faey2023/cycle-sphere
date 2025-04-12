@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Menu, Table, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/firebase/firebase.init'; // Ensure Firestore is imported from firebase.init.ts
 import { collection, getDocs } from 'firebase/firestore';

@@ -5,7 +5,7 @@ interface CustomUser {
   uid?: string;
   name?: string;
   email: string;
-  role?: string;
+  role: string;
 }
 
 // Updated AuthInfo interface with isCustomer

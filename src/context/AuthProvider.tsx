@@ -17,7 +17,7 @@ interface CustomUser {
 }
 
 interface AuthInfo {
-  user: CustomUser | null;
+  user: CustomUser;
   loading: boolean;
   isAdmin: boolean;
   isCustomer: boolean;
