@@ -25,6 +25,10 @@ import AuthProvider from './context/AuthProvider.tsx';
 import { ToastContainer } from 'react-toastify';
 import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
 import ProductManagement from './components/Dashboard/ProductManagement.tsx';
+import AllOrders from './pages/AllOrders/AllOrders.tsx';
+import Admin from './components/Dashboard/Admin.tsx';
+import PasswordUpdate from './components/Dashboard/PasswordUpdate.tsx';
+import UserDash from './components/Dashboard/UserDash.tsx';
 
 const router = createBrowserRouter([
   {
@@ -39,15 +43,7 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: '/admin/products/add',
-        element: <CreateBicycleForm />,
-      },
-      {
-        path: '/admin/products/edit/:id',
-        element: <UpdateBicycleForm />,
-      },
-      {
-        path: '/admin/products/details/:id',
+        path: 'products/details/:id',
         element: (
           // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
           <ProductDetails />
@@ -69,7 +65,6 @@ const router = createBrowserRouter([
       { path: '/aboutUs', element: <AboutUs /> },
       { path: '/signUp', element: <Register /> },
       { path: '/signIn', element: <SignIn /> },
-
       {
         path: '/user',
         element: (
@@ -77,6 +72,32 @@ const router = createBrowserRouter([
             <UserDashBoard />
           </RoleProtectedRoute>
         ),
+        children: [
+          {
+            path: 'orders',
+            element: (
+              <RoleProtectedRoute allowedRoles={['customer']}>
+                <Order />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'udashboard',
+            element: (
+              <RoleProtectedRoute allowedRoles={['customer']}>
+                <UserDash />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'updatePassword',
+            element: (
+              <RoleProtectedRoute allowedRoles={['customer']}>
+                <PasswordUpdate />
+              </RoleProtectedRoute>
+            ),
+          },
+        ],
       },
       {
         path: '/unauthorized',
@@ -98,6 +119,14 @@ const router = createBrowserRouter([
               </RoleProtectedRoute>
             ),
           },
+          {
+            path: 'dashboard',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <Admin />
+              </RoleProtectedRoute>
+            ),
+          },
 
           {
             path: 'products',
@@ -108,13 +137,37 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: 'users-management',
-            element: <UsersManagement />, // Add the UsersManagement route
+            path: 'products/add',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <CreateBicycleForm />
+              </RoleProtectedRoute>
+            ),
           },
-          // {
-          //   path: 'orders',
-          //   element: <Order />,
-          // },
+          {
+            path: 'products/edit/:id',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UpdateBicycleForm />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'products/details/:id',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UpdateBicycleForm />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'users-management',
+            element: <UsersManagement />,
+          },
+          {
+            path: 'orders',
+            element: <AllOrders />,
+          },
         ],
       },
     ],

@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Layout, Menu, Table, Button } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
+import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/firebase/firebase.init'; // Ensure Firestore is imported from firebase.init.ts
 import { collection, getDocs } from 'firebase/firestore';
@@ -18,7 +13,7 @@ const menuItems = [
     key: '1',
     icon: <UserOutlined />,
     label: 'Dashboard',
-    link: '/admin',
+    link: '/admin/dashboard',
   },
   {
     key: '2',
@@ -36,7 +31,7 @@ const menuItems = [
     key: '4',
     icon: <UserOutlined />,
     label: 'Orders',
-    link: '/admin',
+    link: '/admin/orders',
   },
 ];
 
@@ -80,8 +75,8 @@ const AdminDashboard: React.FC = () => {
   if (!isAdmin) return null; // If not admin, return null
 
   return (
-    <div className="mt-1 h-fit">
-      <Layout className="h-full">
+    <div className="mt-1">
+      <Layout className="">
         <Sider>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
             {menuItems.map((item) => (

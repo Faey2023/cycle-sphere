@@ -5,11 +5,13 @@ import { toast } from 'react-toastify';
 import { useAuth } from '@/context/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/firebase/firebase.init';
+import { useLocation } from 'react-router';
 
 const SignIn: React.FC = () => {
   const { loginUser } = useAuth();
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onFinish = async (values: any) => {
     const { email, password } = values;
@@ -29,9 +31,9 @@ const SignIn: React.FC = () => {
 
         setTimeout(() => {
           if (userData.role?.toLowerCase() === 'admin') {
-            navigate('/admin');
+            navigate('/admin/dashboard');
           } else if (userData.role?.toLowerCase() === 'customer') {
-            const from = location.state?.from?.pathname || '/user';
+            const from = location.state?.from?.pathname || '/user/udashboard';
             navigate(from);
           } else {
             navigate('/');

@@ -5,25 +5,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  UserCredential,
 } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import AuthContext from './AuthContext'; // Import the AuthContext
-interface CustomUser {
-  uid?: string;
-  name?: string;
-  email: string;
-  role?: string;
-}
-
-interface AuthInfo {
-  user: CustomUser | null;
-  loading: boolean;
-  isAdmin: boolean;
-  isCustomer: boolean;
-  createUser: (email: string, password: string) => Promise<UserCredential>;
-  loginUser: (email: string, password: string) => Promise<UserCredential>;
-}
+import { AuthInfo } from '@/types';
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<any>(null);

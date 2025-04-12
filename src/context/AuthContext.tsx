@@ -1,21 +1,5 @@
-import { UserCredential } from 'firebase/auth';
+import { AuthInfo } from '@/types';
 import { createContext, useContext } from 'react';
-
-interface CustomUser {
-  uid?: string;
-  name?: string;
-  email: string;
-  role?: string;
-}
-
-// Updated AuthInfo interface with isCustomer
-interface AuthInfo {
-  user: CustomUser | null;
-  loading: boolean;
-  isAdmin: boolean;
-  createUser: (email: string, password: string) => Promise<UserCredential>;
-  loginUser: (email: string, password: string) => Promise<UserCredential>;
-}
 
 const AuthContext = createContext<AuthInfo | null>(null);
 
