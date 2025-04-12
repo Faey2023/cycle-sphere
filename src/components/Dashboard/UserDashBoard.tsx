@@ -55,7 +55,7 @@ const UserDashBoard = () => {
 
     try {
       const user = auth.currentUser;
-      if (user) {
+      if (user && user.email) {
         // Re-authenticate the user with their current password
         const credential = EmailAuthProvider.credential(user.email, currentPassword);
         await reauthenticateWithCredential(user, credential);
