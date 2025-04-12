@@ -9,7 +9,7 @@ function Products() {
       <div className="mb-6 flex items-center justify-between p-2">
         <h1 className="text-3xl font-bold">Bicycle Products</h1>
         <Button asChild>
-          <Link to={'/products/add'}>
+          <Link to={'/admin/products/add'}>
             <PlusCircle className="mr-2 h-4 w-4" />
             Add New Product
           </Link>

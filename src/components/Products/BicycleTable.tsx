@@ -51,7 +51,7 @@ export default function ProductsTable() {
       <div className="rounded-md border p-8 text-center">
         <p className="mb-4">No products found. Add your first bicycle product.</p>
         <Button asChild>
-          <Link to="/products/new">Add Product</Link>
+          <Link to="/admin/products/new">Add Product</Link>
         </Button>
       </div>
     );
@@ -127,13 +127,13 @@ export default function ProductsTable() {
 
               <div className="flex items-center justify-between p-4">
                 <Button variant="outline" size="sm" asChild>
-                  <Link to={`/products/details/${product._id}`}>
+                  <Link to={`/admin/products/details/${product._id}`}>
                     <Eye className="mr-2 h-4 w-4" />
                     View
                   </Link>
                 </Button>
                 <Button variant="outline" size="sm" asChild>
-                  <Link to={`/products/edit/${product._id}`}>
+                  <Link to={`/admin/products/edit/${product._id}`}>
                     <Edit className="mr-2 h-4 w-4" />
                     Edit
                   </Link>
@@ -198,7 +198,7 @@ export default function ProductsTable() {
                 <TableCell>{product.brand}</TableCell>
                 <TableCell>{product.type}</TableCell>
                 <TableCell>${product.price.toFixed(2)}</TableCell>
-                <TableCell>{product.quantity}</TableCell>
+                <TableCell>{product.quantity < 1 ? '0' : product.quantity}</TableCell>
                 <TableCell>
                   {product.inStock ? (
                     <Badge
@@ -216,13 +216,13 @@ export default function ProductsTable() {
                 <TableCell>
                   <div className="flex space-x-2">
                     <Button variant="outline" size="icon" asChild>
-                      <Link to={`/products/details/${product._id}`}>
+                      <Link to={`/admin/products/details/${product._id}`}>
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View Details</span>
                       </Link>
                     </Button>
                     <Button variant="outline" size="icon" asChild>
-                      <Link to={`/products/edit/${product._id}`}>
+                      <Link to={`/admin/products/edit/${product._id}`}>
                         <Edit className="h-4 w-4" />
                         <span className="sr-only">Edit</span>
                       </Link>

@@ -3,7 +3,6 @@ import { Button } from 'antd';
 import { db } from '@/firebase/firebase.init';
 import { doc, updateDoc } from 'firebase/firestore';
 
-
 const UpdateRole: React.FC<{ userId: string; currentRole: string }> = ({ userId, currentRole }) => {
   const handleUpdateRole = async () => {
     try {

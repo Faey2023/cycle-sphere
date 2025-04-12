@@ -81,7 +81,7 @@ const ProductDetails = () => {
         <h1 className="text-2xl font-bold">Bicycle Details</h1>
         <div className="ml-auto">
           <Button asChild>
-            <Link to={`/products/edit/${bicycle._id}`}>
+            <Link to={`/admin/products/edit/${bicycle._id}`}>
               <Edit className="mr-2 h-4 w-4" />
               Edit Bicycle
             </Link>
@@ -126,7 +126,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Quantity Available</span>
-                  <span>{bicycle.quantity} units</span>
+                  <span>{bicycle.quantity < 1 ? '0' : bicycle.quantity} units</span>
                 </div>
               </div>
             </div>
@@ -172,7 +172,10 @@ const ProductDetails = () => {
                     </p>
                     {getStockBadge(bicycle.inStock, bicycle.quantity)}
                   </div>
-                  <p className="mt-1 text-sm">{bicycle.quantity} units in stock</p>
+                  <p className="mt-1 text-sm">
+                    {bicycle.quantity < 1 ? '0' : bicycle.quantity} units in stock
+                  </p>
+                  {/* {bicycle.quantity < 1 ? '0' : bicycle.quantity } */}
                 </div>
               </div>
             </CardContent>
@@ -215,7 +218,7 @@ const ProductDetails = () => {
           {/* actions */}
           <div className="flex gap-4">
             <Button asChild className="flex-1">
-              <Link to={`/products/edit/${bicycle._id}`}>Edit Bicycle</Link>
+              <Link to={`/admin/products/edit/${bicycle._id}`}>Edit Bicycle</Link>
             </Button>
             <Button variant="outline" className="flex-1" onClick={() => navigate(-1)}>
               Back to List
