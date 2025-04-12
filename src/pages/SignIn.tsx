@@ -33,7 +33,7 @@ const SignIn: React.FC = () => {
           if (userData.role?.toLowerCase() === 'admin') {
             navigate('/admin/dashboard');
           } else if (userData.role?.toLowerCase() === 'customer') {
-            const from = location.state?.from?.pathname || '/user';
+            const from = location.state?.from?.pathname || '/user/udashboard';
             navigate(from);
           } else {
             navigate('/');
