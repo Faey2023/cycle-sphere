@@ -23,6 +23,8 @@ import Order from './pages/Orders/Orders.tsx';
 import Register from './pages/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
 import { ToastContainer } from 'react-toastify';
+import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
+import ProductManagement from './components/Dashboard/ProductManagement.tsx';
 
 const router = createBrowserRouter([
   {
@@ -48,7 +50,7 @@ const router = createBrowserRouter([
         path: '/Products/details/:id',
         element: (
           // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-            <ProductDetails />
+          <ProductDetails />
           // </RoleProtectedRoute>
         ),
       },
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
         path: '/checkout',
         element: (
           // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-            <Checkout />
+          <Checkout />
           // </RoleProtectedRoute>
         ),
       },
@@ -67,7 +69,7 @@ const router = createBrowserRouter([
       { path: '/aboutUs', element: <AboutUs /> },
       { path: '/signUp', element: <Register /> },
       { path: '/signIn', element: <SignIn /> },
-      
+
       {
         path: '/user',
         element: (
@@ -95,8 +97,6 @@ const router = createBrowserRouter([
                 <UsersManagement />
               </RoleProtectedRoute>
             ),
-
-            
           },
 
           {
@@ -116,7 +116,7 @@ const router = createBrowserRouter([
           //   element: <Order />,
           // },
         ],
-      }
+      },
     ],
   },
 ]);
