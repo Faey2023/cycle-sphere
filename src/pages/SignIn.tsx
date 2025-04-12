@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
 
         setTimeout(() => {
           if (userData.role?.toLowerCase() === 'admin') {
-            navigate('/admin');
+            navigate('/admin/dashboard');
           } else if (userData.role?.toLowerCase() === 'customer') {
             const from = location.state?.from?.pathname || '/user';
             navigate(from);

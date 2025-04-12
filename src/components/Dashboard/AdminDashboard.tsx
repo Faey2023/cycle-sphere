@@ -13,7 +13,7 @@ const menuItems = [
     key: '1',
     icon: <UserOutlined />,
     label: 'Dashboard',
-    link: '/admin',
+    link: '/admin/dashboard',
   },
   {
     key: '2',
@@ -75,8 +75,8 @@ const AdminDashboard: React.FC = () => {
   if (!isAdmin) return null; // If not admin, return null
 
   return (
-    <div className="mt-1 h-fit">
-      <Layout className="h-full">
+    <div className="mt-1">
+      <Layout className="">
         <Sider>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
             {menuItems.map((item) => (

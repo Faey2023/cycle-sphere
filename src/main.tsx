@@ -26,6 +26,7 @@ import { ToastContainer } from 'react-toastify';
 import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
 import ProductManagement from './components/Dashboard/ProductManagement.tsx';
 import AllOrders from './pages/AllOrders/AllOrders.tsx';
+import Admin from './components/Dashboard/Admin.tsx';
 
 const router = createBrowserRouter([
   {
@@ -38,14 +39,6 @@ const router = createBrowserRouter([
       {
         path: 'products',
         element: <Products />,
-      },
-      {
-        path: 'products/add',
-        element: <CreateBicycleForm />,
-      },
-      {
-        path: 'products/edit/:id',
-        element: <UpdateBicycleForm />,
       },
       {
         path: 'products/details/:id',
@@ -104,12 +97,44 @@ const router = createBrowserRouter([
               </RoleProtectedRoute>
             ),
           },
+          {
+            path: 'dashboard',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <Admin />
+              </RoleProtectedRoute>
+            ),
+          },
 
           {
             path: 'products',
             element: (
               <RoleProtectedRoute allowedRoles={['admin']}>
                 <ProductManagement />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'products/add',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <CreateBicycleForm />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'products/edit/:id',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UpdateBicycleForm />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'products/details/:id',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UpdateBicycleForm />
               </RoleProtectedRoute>
             ),
           },

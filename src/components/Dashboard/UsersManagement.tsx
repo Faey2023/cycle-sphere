@@ -54,7 +54,7 @@ const UsersManagement = () => {
   ];
 
   return (
-    <div>
+    <div className='h-screen'>
       <h1>Users Management</h1>
       <Table dataSource={users} columns={columns} rowKey="id" />
     </div>
