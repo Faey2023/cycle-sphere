@@ -50,9 +50,11 @@ const Featured = () => {
                     src={bike.img}
                     alt="Slide 1"
                   />
-                  <button className="absolute bottom-2.5 left-1/2 -translate-x-1/2 cursor-pointer rounded-3xl bg-white px-5 py-3 text-sm text-black opacity-0 shadow-md transition-opacity duration-300 ease-in-out group-hover:opacity-[1] hover:bg-black hover:text-white">
-                    Add to Cart
-                  </button>
+                  <Link to={`/bicycles/${bike?._id}`}>
+                    <button className="absolute bottom-2.5 left-1/2 -translate-x-1/2 cursor-pointer rounded-3xl bg-white px-5 py-3 text-sm text-black opacity-0 shadow-md transition-opacity duration-300 ease-in-out group-hover:opacity-[1] hover:bg-black hover:text-white">
+                      View Details
+                    </button>
+                  </Link>
                 </div>
                 <div className="mt-5 w-full text-center">
                   <h5 className="text-lg capitalize">{bike.name}</h5>
