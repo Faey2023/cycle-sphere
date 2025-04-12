@@ -32,7 +32,7 @@ const Register: React.FC = () => {
       .then(() => {
         toast.success('Successfully registered!');
         form.resetFields();
-        setTimeout(() => navigate('/signIn'), 900);
+        setTimeout(() => navigate('/'), 900);
       })
       .catch((error: any) => {
         console.error(error.message);
