@@ -27,6 +27,8 @@ import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
 import ProductManagement from './components/Dashboard/ProductManagement.tsx';
 import AllOrders from './pages/AllOrders/AllOrders.tsx';
 import Admin from './components/Dashboard/Admin.tsx';
+import PasswordUpdate from './components/Dashboard/PasswordUpdate.tsx';
+import UserDash from './components/Dashboard/UserDash.tsx';
 
 const router = createBrowserRouter([
   {
@@ -73,7 +75,27 @@ const router = createBrowserRouter([
         children: [
           {
             path: 'orders',
-            element: <Order />,
+            element: (
+              <RoleProtectedRoute allowedRoles={['customer']}>
+                <Order />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'udashboard',
+            element: (
+              <RoleProtectedRoute allowedRoles={['customer']}>
+                <UserDash />
+              </RoleProtectedRoute>
+            ),
+          },
+          {
+            path: 'updatePassword',
+            element: (
+              <RoleProtectedRoute allowedRoles={['customer']}>
+                <PasswordUpdate />
+              </RoleProtectedRoute>
+            ),
           },
         ],
       },
