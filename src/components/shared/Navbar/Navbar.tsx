@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const avatarLink = role === 'admin' ? '/admin/dashboard' : '/user';
+  const avatarLink = role === 'admin' ? '/admin/dashboard' : '/user/udashboard';
 
   return (
     <nav className="relative z-10 flex items-center justify-between p-5 shadow-lg">
