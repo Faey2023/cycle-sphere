@@ -31,7 +31,7 @@ const menuItems = [
     key: '4',
     icon: <UserOutlined />,
     label: 'Orders',
-    link: '/admin',
+    link: '/admin/orders',
   },
 ];
 
