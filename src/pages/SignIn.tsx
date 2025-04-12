@@ -28,10 +28,10 @@ const SignIn: React.FC = () => {
         form.resetFields();
 
         setTimeout(() => {
-          if (userData.role?.toLowerCase() === "admin") {
-            navigate("/admin");
-          } else if (userData.role?.toLowerCase() === "customer") {
-            const from = location.state?.from?.pathname || "/user";
+          if (userData.role?.toLowerCase() === 'admin') {
+            navigate('/admin');
+          } else if (userData.role?.toLowerCase() === 'customer') {
+            const from = location.state?.from?.pathname || '/user';
             navigate(from);
           } else {
             navigate('/');

@@ -80,7 +80,7 @@ const AdminDashboard: React.FC = () => {
   if (!isAdmin) return null; // If not admin, return null
 
   return (
-    <div className="mt-1 h-[500px]">
+    <div className="mt-1 h-fit">
       <Layout className="h-full">
         <Sider>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
