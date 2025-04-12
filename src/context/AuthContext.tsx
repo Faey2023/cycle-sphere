@@ -8,6 +8,7 @@ interface CustomUser {
   role?: string;
 }
 
+// Updated AuthInfo interface with isCustomer
 interface AuthInfo {
   user: CustomUser | null;
   loading: boolean;

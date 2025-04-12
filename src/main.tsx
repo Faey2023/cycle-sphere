@@ -65,19 +65,47 @@ const router = createBrowserRouter([
         element: <Order />,
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> }, // Updated route for Register
-      { path: '/signIn', element: <SignIn /> }, // Updated route for SignIn
-
-      { path: '/unauthorized', element: <Unauthorized /> },
-
-      // Protected Admin Route
+      { path: '/signUp', element: <Register /> },
+      { path: '/signIn', element: <SignIn /> },
+      
+      {
+        path: '/user',
+        element: (
+          <RoleProtectedRoute allowedRoles={['customer']}>
+            <UserDashBoard />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: '/unauthorized',
+        element: <Unauthorized />,
+      },
       {
         path: '/admin',
-        element: <RoleProtectedRoute allowedRoles={['admin']} children={undefined} />,
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <AdminDashboard />
+          </RoleProtectedRoute>
+        ),
         children: [
           {
-            path: '',
-            element: <AdminDashboard />,
+            path: 'users-management',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <UsersManagement />
+              </RoleProtectedRoute>
+            ),
+
+            
+          },
+
+          {
+            path: 'products',
+            element: (
+              <RoleProtectedRoute allowedRoles={['admin']}>
+                <ProductManagement />
+              </RoleProtectedRoute>
+            ),
           },
           {
             path: 'users-management',
@@ -88,7 +116,7 @@ const router = createBrowserRouter([
           //   element: <Order />,
           // },
         ],
-      },
+      }
     ],
   },
 ]);

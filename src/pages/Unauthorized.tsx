@@ -5,7 +5,7 @@ const Unauthorized = () => {
   const navigate = useNavigate();
 
   const handleGoToSignIn = () => {
-    navigate('/signIn'); // Redirects to the sign-in page
+    navigate('/'); // Redirects to the sign-in page
   };
 
   return (
