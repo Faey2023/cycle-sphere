@@ -5,8 +5,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // Define a user interface with an 'active' property
 interface AuthState {
   user: {
-    role?: string; name: string; email: string 
-} | null;
+    role?: string;
+    name: string;
+    email: string;
+  } | null;
   users: { id: string; name: string; email: string; active: boolean }[]; // Users array to track multiple users
 }
 

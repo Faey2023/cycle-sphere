@@ -21,7 +21,7 @@ const RoleProtectedRoute: React.FC<RoleProtectedRouteProps> = ({ children, allow
   }
 
   // If logged in but role is not allowed
-  if (!allowedRoles.includes(user.role)) {
+  if (!allowedRoles.includes(user.role ?? '')) {
     return <Navigate to="/unauthorized" replace />;
   }
 

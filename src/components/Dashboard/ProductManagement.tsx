@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Modal, Form, Input, Popconfirm } from 'antd';
 import axios from 'axios';
+import Products from '../Products/Products';
 
 const ProductManagement: React.FC = () => {
   const [products, setProducts] = useState([]);
@@ -63,18 +64,19 @@ const ProductManagement: React.FC = () => {
       title: 'Actions',
       render: (_: any, record: any) => (
         <>
-          <Button onClick={() => {
-            setEditingProduct(record);
-            form.setFieldsValue(record);
-            setIsModalVisible(true);
-          }}>
+          <Button
+            onClick={() => {
+              setEditingProduct(record);
+              form.setFieldsValue(record);
+              setIsModalVisible(true);
+            }}
+          >
             Edit
           </Button>
-          <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record._id)}
-          >
-            <Button danger style={{ marginLeft: 8 }}>Delete</Button>
+          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record._id)}>
+            <Button danger style={{ marginLeft: 8 }}>
+              Delete
+            </Button>
           </Popconfirm>
         </>
       ),
@@ -82,12 +84,16 @@ const ProductManagement: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: 24, background: '#fff' }}>
-      <Button type="primary" onClick={() => {
-        form.resetFields();
-        setEditingProduct(null);
-        setIsModalVisible(true);
-      }} style={{ marginBottom: 16 }}>
+    <div className="h-full w-full" style={{ padding: 24, background: '#fff' }}>
+      {/* <Button
+        type="primary"
+        onClick={() => {
+          form.resetFields();
+          setEditingProduct(null);
+          setIsModalVisible(true);
+        }}
+        style={{ marginBottom: 16 }}
+      >
         Add Product
       </Button>
 
@@ -107,7 +113,8 @@ const ProductManagement: React.FC = () => {
             <Input type="number" />
           </Form.Item>
         </Form>
-      </Modal>
+      </Modal> */}
+      <Products></Products>
     </div>
   );
 };

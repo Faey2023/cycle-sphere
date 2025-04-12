@@ -1,3 +1,5 @@
+import { UserCredential } from 'firebase/auth';
+
 export type BicycleType = 'Mountain' | 'Road' | 'Hybrid' | 'BMX' | 'Electric';
 export type BicycleCategory =
   | 'Men'
@@ -71,3 +73,19 @@ export interface TOrder {
 //   inStock: boolean;
 //   isDeleted: boolean;
 // }
+
+export interface CustomUser {
+  uid?: string;
+  name?: string;
+  email: string;
+  role?: string;
+}
+
+export interface AuthInfo {
+  user: CustomUser;
+  loading: boolean;
+  isAdmin: boolean;
+  isCustomer: boolean;
+  createUser: (email: string, password: string) => Promise<UserCredential>;
+  loginUser: (email: string, password: string) => Promise<UserCredential>;
+}

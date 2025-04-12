@@ -7,7 +7,6 @@ import { auth, db } from '@/firebase/firebase.init';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
