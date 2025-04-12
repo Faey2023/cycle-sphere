@@ -5,7 +5,7 @@ import ProductsTable from './BicycleTable';
 
 function Products() {
   return (
-    <div className="container mx-auto py-10 overflow-scroll">
+    <div className="container mx-auto overflow-scroll py-10">
       <div className="mb-6 flex items-center justify-between p-2">
         <h1 className="text-3xl font-bold">Bicycle Products</h1>
         <Button asChild>
