@@ -15,7 +15,7 @@ import Unauthorized from './pages/Unauthorized';
 import SignIn from './pages/SignIn'; // Import the SignIn component
 import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
 import Checkout from './pages/Checkout/Checkout.tsx';
-import Products from './components/Products/Products.tsx';
+// import Products from './components/Products/Products.tsx';
 import CreateBicycleForm from './components/Products/CreateBicycleForm.tsx';
 import UpdateBicycleForm from './components/Products/UpdateBicycleForm.tsx';
 import ProductDetails from './components/Products/ProductDetails.tsx';
@@ -38,18 +38,18 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/allBicycles', element: <AllBicycles /> },
       { path: '/bicycles/:id', element: <BicycleDetails /> },
-      {
-        path: '/admin/products',
-        element: <Products />,
-      },
-      {
-        path: 'products/details/:id',
-        element: (
-          // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
-          <ProductDetails />
-          // </RoleProtectedRoute>
-        ),
-      },
+      // {
+      //   path: '/products',
+      //   element: <Products />,
+      // },
+      // {
+      //   path: '/products/details/:id',
+      //   element: (
+      //     // <RoleProtectedRoute allowedRoles={['admin', 'user']}>
+      //     <ProductDetails />
+      //     // </RoleProtectedRoute>
+      //   ),
+      // },
       {
         path: '/checkout',
         element: (
@@ -156,7 +156,7 @@ const router = createBrowserRouter([
             path: 'products/details/:id',
             element: (
               <RoleProtectedRoute allowedRoles={['admin']}>
-                <UpdateBicycleForm />
+                <ProductDetails />
               </RoleProtectedRoute>
             ),
           },

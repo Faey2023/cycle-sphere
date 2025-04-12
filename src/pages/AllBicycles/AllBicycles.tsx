@@ -108,7 +108,7 @@ export default function AllBicycles() {
         <div className="w-full md:w-3/4 lg:w-4/5">
           {totalProducts && (
             <div>
-              <p>total product: {totalProducts + 1}</p>
+              <p>total product: {totalProducts}</p>
             </div>
           )}
           {/* Filter status summary */}
