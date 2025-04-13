@@ -19,11 +19,16 @@ const BuyNow = ({ productId, title, quantity, price, inStock }: BuyNowButtonProp
   const { user } = useAuth();
 
   const handleBuyNow = async () => {
+    if (!user) {
+      navigate('/signIn');
+      return;
+    }
+
     try {
       const orderData = {
         product: productId,
         title: title,
-        email: user?.email,
+        email: user.email,
         quantity,
         totalPrice: quantity * price,
       };

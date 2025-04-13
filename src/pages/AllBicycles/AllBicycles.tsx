@@ -21,6 +21,7 @@ import { useState } from 'react';
 import LoadingSkeleton from './LoadingSkeleton';
 import BicyclePageError from './BicyclePageError';
 import { useGetAllBicycleQuery } from '@/redux/api/productApi';
+import BicycleCard from '@/components/BicycleCard/BicycleCard';
 
 export default function AllBicycles() {
   const [open, setOpen] = useState(false);
@@ -121,7 +122,7 @@ export default function AllBicycles() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {bicycles?.data?.data?.length > 0 ? (
               bicycles?.data?.data?.map((bicycle: Bicycle) => (
-                <BCard key={bicycle._id} bicycle={bicycle} />
+                <BicycleCard key={bicycle._id} bicycle={bicycle} />
               ))
             ) : (
               <div className="col-span-full flex flex-col items-center py-10 text-center text-gray-500">
