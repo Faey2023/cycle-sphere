@@ -30,9 +30,11 @@ const Banner = () => {
               </svg>
             </button>
           </Link>
-          <button className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
-            Explore Collections
-          </button>
+          <Link to="/allBicycles">
+            <button className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
+              Explore Collections
+            </button>
+          </Link>
         </div>
         <div className="hidden lg:col-span-5 lg:mt-0 lg:flex">
           <img src="/assets/cycle-banner.png" alt="man-on-a-cycle-image" />

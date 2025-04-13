@@ -1,4 +1,3 @@
-import BCard from '@/components/BicycleCard/BCard';
 import FilterSidebar from '@/components/FilterSidebar/FilterSidebar';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
@@ -109,7 +108,7 @@ export default function AllBicycles() {
         <div className="w-full md:w-3/4 lg:w-4/5">
           {totalProducts && (
             <div>
-              <p>total product: {totalProducts}</p>
+              <p>Bicycles: {totalProducts}</p>
             </div>
           )}
           {/* Filter status summary */}

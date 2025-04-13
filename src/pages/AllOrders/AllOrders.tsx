@@ -23,6 +23,7 @@ const AllOrders = () => {
             <thead>
               <tr>
                 <th className="px-4 py-2 text-left">Order ID</th>
+                <th className="px-4 py-2 text-left">Customer Email</th>
                 <th className="px-4 py-2 text-left">Created At</th>
                 <th className="px-4 py-2 text-left">Status</th>
                 <th className="px-4 py-2 text-left">Total Price</th>
@@ -32,6 +33,7 @@ const AllOrders = () => {
               {orderData?.map((order: GetAllOrderParams) => (
                 <tr key={order._id}>
                   <td className="px-4 py-2">{order._id}</td>
+                  <td className="px-4 py-2">{order.email}</td>
                   <td className="px-4 py-2">
                     {format(new Date(order.createdAt), 'MM/dd/yyyy hh:mm a')}
                   </td>

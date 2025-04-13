@@ -7,18 +7,38 @@ import { Link } from 'react-router-dom';
 import { useGetAllBicycleQuery } from '@/redux/api/productApi';
 import { Bicycle } from '@/types';
 import { Navigation } from 'swiper/modules';
+import { useEffect, useState } from 'react';
 
 const Featured = () => {
   const { data: bicycles = [], isLoading } = useGetAllBicycleQuery(undefined);
-
-  if (isLoading) {
-    return <div className="py-10 text-center text-lg">Loading featured bicycles...</div>;
-  }
+  const [slidesPerView, setSlidesPerView] = useState<number>(1);
 
   const featuredBikes = bicycles?.data?.data?.slice(0, 6) || [];
 
   // console.log(featuredBikes);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setSlidesPerView(4);
+      } else if (window.innerWidth >= 576) {
+        setSlidesPerView(3);
+      } else if (window.innerWidth >= 400) {
+        setSlidesPerView(2);
+      } else {
+        setSlidesPerView(1);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  if (isLoading) {
+    return <div className="py-10 text-center text-lg">Loading featured bicycles...</div>;
+  }
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-white font-sans">
       <div className="mb-2.5 flex w-[80%] justify-between">
@@ -32,7 +52,8 @@ const Featured = () => {
 
       <div className="swiper-container relative h-[100%] w-[80%] overflow-hidden">
         <Swiper
-          slidesPerView={4}
+          // slidesPerView={4}
+          slidesPerView={slidesPerView}
           spaceBetween={20}
           navigation={{
             nextEl: '.swiper-button-next',
