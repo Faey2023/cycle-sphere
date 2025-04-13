@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 const AllOrders = () => {
   const { data: order = [], isLoading } = useGetAllOrderQuery({});
   const orderData: GetAllOrderParams[] = order?.data;
-  console.log(orderData);
+  // console.log(orderData);
 
   return isLoading ? (
     <Skeleton />

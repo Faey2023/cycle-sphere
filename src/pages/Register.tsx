@@ -12,7 +12,7 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
 
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+    // console.log('Received values of form: ', values);
     const { email, password } = values; // Extract email and password from form values
 
     createUser(email, password) // Pass email and password to the createUser function

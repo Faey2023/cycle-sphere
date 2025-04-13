@@ -82,16 +82,6 @@ const Navbar: React.FC = () => {
             About Us
           </Link>
         </li>
-        {!isAuthenticated && (
-          <li>
-            <Link
-              to="/orders"
-              className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
-            >
-              Orders
-            </Link>
-          </li>
-        )}
         <li>
           <Link
             to="/checkout"
@@ -169,16 +159,6 @@ const Navbar: React.FC = () => {
               About Us
             </Link>
           </li>
-          {!isAuthenticated && (
-            <li>
-              <Link
-                to="/orders"
-                className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
-              >
-                Orders
-              </Link>
-            </li>
-          )}
           <li>
             <Link
               to="/checkout"

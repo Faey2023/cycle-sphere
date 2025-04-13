@@ -44,7 +44,7 @@ export default function ProductsTable() {
   }
 
   const products = data?.data?.data || [];
-  console.log(products);
+  // console.log(products);
 
   // if No products founds
   if (products.length === 0) {

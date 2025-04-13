@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
 
       if (userSnap.exists()) {
         const userData = userSnap.data();
-        console.log('User data from Firestore:', userData);
+        // console.log('User data from Firestore:', userData);
 
         toast.success('Successfully signed in!');
         form.resetFields();

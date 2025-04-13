@@ -12,7 +12,7 @@ const Checkout = () => {
 
   const { data, isLoading } = useGetSingleBicycleQuery(orderedProductId);
   const orderedProductData: Bicycle = data?.data;
-  console.log(orderedProductData);
+  // console.log(orderedProductData);
   if (!order) {
     return <p className="p-6">No order found. Please try again.</p>;
   }

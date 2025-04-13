@@ -32,9 +32,9 @@ export default function FilterSidebar() {
   // Get all bicycles for filter options
   const { data, isLoading } = useGetAllBicycleQuery('');
 
-  console.log('data from filter', data);
+  // console.log('data from filter', data);
 
-  console.log(data?.data?.data);
+  // console.log(data?.data?.data);
 
   // unique values for filters
   const uniqueBrands: string[] = data?.data?.data

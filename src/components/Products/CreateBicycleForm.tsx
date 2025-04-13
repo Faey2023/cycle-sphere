@@ -52,7 +52,7 @@ const CreateBicycleForm = () => {
     e.preventDefault();
     try {
       const response = await addBicycle(formData).unwrap();
-      console.log('Success:', response);
+      // console.log('Success:', response);
       toast.success('Bicycle added successfully!');
 
       // Reset form after successful submission

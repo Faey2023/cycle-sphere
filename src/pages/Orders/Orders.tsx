@@ -10,7 +10,7 @@ const Order = () => {
   const email = user?.email;
   const { data: order = [], isLoading } = useGetOrdersByEmailQuery(email ? { email } : skipToken);
   const orderData: GetAllOrderParams[] = order?.data;
-  console.log(orderData);
+  // console.log(orderData);
 
   return isLoading ? (
     <Skeleton />

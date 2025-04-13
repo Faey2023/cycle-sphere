@@ -37,7 +37,7 @@ const UpdateBicycleForm = () => {
 
   const { data: singleBicycleData } = useGetSingleBicycleQuery(id);
   const singleBicycle: Bicycle = singleBicycleData?.data;
-  console.log(singleBicycle);
+  // console.log(singleBicycle);
   // update mutation
   const [updateBicycle, { isLoading: isUpdating }] = useUpdateBicycleMutation();
 
@@ -85,7 +85,7 @@ const UpdateBicycleForm = () => {
 
     try {
       const response = await updateBicycle({ id, data: formData }).unwrap();
-      console.log('Success:', response);
+      // console.log('Success:', response);
       toast.success('Bicycle updated successfully!');
 
       // navigate back after successful update
