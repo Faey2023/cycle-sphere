@@ -35,6 +35,24 @@ const Navbar: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -51,7 +69,9 @@ const Navbar: React.FC = () => {
   const avatarLink = role === 'admin' ? '/admin/dashboard' : '/user/udashboard';
 
   return (
-    <nav className="relative z-10 flex items-center justify-between p-5 shadow-lg">
+    <nav
+      className={`flex h-24 w-full items-center justify-between bg-white p-5 shadow-lg transition-all duration-300 ease-in-out ${isSticky ? 'fixed top-0 left-0 z-50 shadow-md' : ''}`}
+    >
       <Link to="/">
         <img className="h-[50px] w-45 md:w-[250px]" src="/logo.png" alt="cycle-sphere-logo" />
       </Link>
@@ -80,12 +100,42 @@ const Navbar: React.FC = () => {
         </li>
         <li>
           <Link
+            to="/contact"
+            className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
+          >
+            Contact
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/checkout"
             className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
           >
             Checkout
           </Link>
         </li>
+        {isAuthenticated ||
+          (role === 'admin' && (
+            <li>
+              <Link
+                to="/admin/dashboard"
+                className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
+            </li>
+          ))}
+        {isAuthenticated ||
+          (role === 'admin' && (
+            <li>
+              <Link
+                to="/admin/dashboard"
+                className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
+            </li>
+          ))}
       </ul>
 
       <div className="flex items-center">
@@ -151,12 +201,31 @@ const Navbar: React.FC = () => {
           </li>
           <li>
             <Link
+              to="/contact"
+              className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
+            >
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/checkout"
               className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
             >
               Checkout
             </Link>
           </li>
+          {isAuthenticated ||
+            (role === 'admin' && (
+              <li>
+                <Link
+                  to="/admin/dashboard"
+                  className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
+                >
+                  Dashboard
+                </Link>
+              </li>
+            ))}
         </ul>
 
         {isAuthenticated ? (

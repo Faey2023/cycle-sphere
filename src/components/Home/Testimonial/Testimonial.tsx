@@ -7,56 +7,56 @@ import './testimonial.css';
 const testimonials = [
   {
     name: 'John Smith',
-    image: '/assets/user-1.jpeg',
+    image: '/user-1.jpeg',
     rating: 5,
     review:
       'Cycle Sphere made my bike shopping experience effortless! The website is easy to use, the selection is great, and delivery was fast.',
   },
   {
     name: 'Emil Johnson',
-    image: '/assets/user-2.jpeg',
+    image: '/user-2.jpeg',
     rating: 4,
     review:
       'Great service and amazing variety of bikes. Customer support was quick to respond. Totally satisfied with my purchase!',
   },
   {
     name: 'David Lee',
-    image: '/assets/user-3.jpeg',
+    image: '/user-3.jpeg',
     rating: 5,
     review:
       'Got my mountain bike within 3 days! High quality and smooth ride. Would definitely recommend Cycle Sphere to others.',
   },
   {
     name: 'Spirit Williams',
-    image: '/assets/user-4.jpg',
+    image: '/user-4.jpg',
     rating: 5,
     review:
       'Fantastic experience from start to finish. Easy checkout process and the bike arrived in perfect condition.',
   },
   {
     name: 'John Smith',
-    image: '/assets/user-1.jpeg',
+    image: '/user-1.jpeg',
     rating: 5,
     review:
       'Cycle Sphere made my bike shopping experience effortless! The website is easy to use, the selection is great, and delivery was fast.',
   },
   {
     name: 'Emil Johnson',
-    image: '/assets/user-2.jpeg',
+    image: '/user-2.jpeg',
     rating: 4,
     review:
       'Great service and amazing variety of bikes. Customer support was quick to respond. Totally satisfied with my purchase!',
   },
   {
     name: 'David Lee',
-    image: '/assets/user-3.jpeg',
+    image: '/user-3.jpeg',
     rating: 5,
     review:
       'Got my mountain bike within 3 days! High quality and smooth ride. Would definitely recommend Cycle Sphere to others.',
   },
   {
     name: 'Spirit Williams',
-    image: '/assets/user-4.jpg',
+    image: '/user-4.jpg',
     rating: 5,
     review:
       'Fantastic experience from start to finish. Easy checkout process and the bike arrived in perfect condition.',

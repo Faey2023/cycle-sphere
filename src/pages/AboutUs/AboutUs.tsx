@@ -20,7 +20,7 @@ const AboutUs = () => {
             bike and get the most out of every journey.
           </p>
         </div>
-        <img src="/assets/who-we-are.jpg" alt="cycle making" className="rounded-2xl shadow-md" />
+        <img src="/who-we-are.jpg" alt="cycle making" className="rounded-2xl shadow-md" />
       </section>
 
       <section className="space-y-6">
@@ -45,7 +45,7 @@ const AboutUs = () => {
       {/* Why Customers Love Us */}
       <section className="grid items-center gap-10 md:grid-cols-2">
         <img
-          src="/assets/customer-service.jpg"
+          src="/customer-service.jpg"
           alt="Customer service"
           className="rounded-2xl shadow-md"
         />

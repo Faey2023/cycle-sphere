@@ -12,10 +12,9 @@ import BicycleDetails from './pages/BicycleDetails/BicycleDetails.tsx';
 import AdminDashboard from './components/Dashboard/AdminDashboard.tsx';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
-import SignIn from './pages/SignIn'; // Import the SignIn component
-import UsersManagement from './components/Dashboard/UsersManagement.tsx'; // Import the UsersManagement page
+import SignIn from './pages/SignIn';
+import UsersManagement from './components/Dashboard/UsersManagement.tsx';
 import Checkout from './pages/Checkout/Checkout.tsx';
-// import Products from './components/Products/Products.tsx';
 import CreateBicycleForm from './components/Products/CreateBicycleForm.tsx';
 import UpdateBicycleForm from './components/Products/UpdateBicycleForm.tsx';
 import ProductDetails from './components/Products/ProductDetails.tsx';
