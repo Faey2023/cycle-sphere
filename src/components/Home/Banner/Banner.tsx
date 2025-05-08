@@ -14,7 +14,7 @@ const Banner = () => {
             match for your journey today!
           </p>
           <Link to="/allBicycles">
-            <button className="mr-3 inline-flex cursor-pointer items-center justify-center rounded-lg bg-cyan-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-cyan-800 focus:ring-4 focus:ring-cyan-300">
+            <button className="mr-3 inline-flex cursor-pointer items-center justify-center rounded-lg bg-red-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300">
               Shop Now
               <svg
                 className="-mr-1 ml-2 h-5 w-5"

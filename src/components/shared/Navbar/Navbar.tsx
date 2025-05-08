@@ -53,11 +53,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="relative z-10 flex items-center justify-between p-5 shadow-lg">
       <Link to="/">
-        <img
-          className="h-[50px] w-45 md:w-[250px]"
-          src="../assets/logo.png"
-          alt="cycle-sphere-logo"
-        />
+        <img className="h-[50px] w-45 md:w-[250px]" src="/logo.png" alt="cycle-sphere-logo" />
       </Link>
 
       <ul className="hidden space-x-6 md:flex">
@@ -93,15 +89,9 @@ const Navbar: React.FC = () => {
       </ul>
 
       <div className="flex items-center">
-        {!isAuthenticated && (
-          <Button asChild className="hidden md:block">
-            <Link to="/signUp">Sign Up</Link>
-          </Button>
-        )}
-
         {isAuthenticated ? (
           <>
-            <Button onClick={handleSignOut} className="ml-3 hidden md:block">
+            <Button onClick={handleSignOut} className="ml-3 hidden md:block" variant={'red'}>
               Sign Out
             </Button>
             {role && (
@@ -111,7 +101,7 @@ const Navbar: React.FC = () => {
             )}
           </>
         ) : (
-          <Button asChild className="ml-3 hidden md:block">
+          <Button asChild className="ml-3 hidden md:block" variant={'red'}>
             <Link to="/signIn">Sign In</Link>
           </Button>
         )}
@@ -169,15 +159,9 @@ const Navbar: React.FC = () => {
           </li>
         </ul>
 
-        {!isAuthenticated && (
-          <Button asChild className="mt-4">
-            <Link to="/signUp">Sign Up</Link>
-          </Button>
-        )}
-
         {isAuthenticated ? (
           <>
-            <Button onClick={handleSignOut} className="mt-4">
+            <Button onClick={handleSignOut} className="mt-4" variant={'red'}>
               Sign Out
             </Button>
             {role && (
@@ -187,7 +171,7 @@ const Navbar: React.FC = () => {
             )}
           </>
         ) : (
-          <Button asChild className="mt-4">
+          <Button asChild className="mt-4" variant={'red'}>
             <Link to="/signIn">Sign In</Link>
           </Button>
         )}

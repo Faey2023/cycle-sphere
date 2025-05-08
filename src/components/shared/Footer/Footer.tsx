@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="mx-auto px-5 pt-5">
           <div className="mb-3 grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-12 lg:gap-20">
             <div className="col-span-3">
-              <img src="../assets/logo.png" alt="cycle-sphere-logo" />
+              <img src="/logo.png" alt="cycle-sphere-logo" />
             </div>
             <nav className="col-span-1 md:col-span-1 lg:col-span-2">
               <p className="mb-3 text-xs font-semibold tracking-wider text-gray-400 uppercase">
@@ -121,7 +121,7 @@ const Footer = () => {
                     placeholder="Enter your email"
                   />
                   <button
-                    className="border-2 border-cyan-600 bg-cyan-600 px-3 py-2 text-center text-sm font-medium text-white no-underline"
+                    className="border-2 border-red-600 bg-red-600 px-3 py-2 text-center text-sm font-medium text-white no-underline"
                     type="submit"
                   >
                     Subscribe

@@ -42,9 +42,7 @@ const Featured = () => {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-white font-sans">
       <div className="mb-2.5 flex w-[80%] justify-between">
-        <h3 className="text-4xl font-bold text-cyan-700 capitalize italic">
-          Best Selling Bicycles
-        </h3>
+        <h3 className="text-4xl font-bold text-red-700 capitalize italic">Best Selling Bicycles</h3>
         <Button asChild>
           <Link to="/allBicycles">View All</Link>
         </Button>
