@@ -89,7 +89,7 @@ export interface AuthInfo {
   user: CustomUser;
   loading: boolean;
   isAdmin: boolean;
-  isCustomer: boolean;
+  isUser: boolean;
   createUser: (email: string, password: string) => Promise<UserCredential>;
   loginUser: (email: string, password: string) => Promise<UserCredential>;
 }
