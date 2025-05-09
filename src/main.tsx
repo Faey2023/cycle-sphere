@@ -40,7 +40,7 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: (
-          <RoleProtectedRoute allowedRoles={['admin', 'customer']}>
+          <RoleProtectedRoute allowedRoles={['admin', 'user']}>
             <Checkout />
           </RoleProtectedRoute>
         ),
@@ -50,115 +50,116 @@ const router = createBrowserRouter([
         element: <Order />,
       },
       { path: '/aboutUs', element: <AboutUs /> },
-      { path: '/signUp', element: <Register /> },
-      { path: '/signIn', element: <SignIn /> },
-      {
-        path: '/user',
-        element: (
-          <RoleProtectedRoute allowedRoles={['customer']}>
-            <UserDashBoard />
-          </RoleProtectedRoute>
-        ),
-        children: [
-          {
-            path: 'orders',
-            element: (
-              <RoleProtectedRoute allowedRoles={['customer']}>
-                <Order />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'udashboard',
-            element: (
-              <RoleProtectedRoute allowedRoles={['customer']}>
-                <UserDash />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'updatePassword',
-            element: (
-              <RoleProtectedRoute allowedRoles={['customer']}>
-                <PasswordUpdate />
-              </RoleProtectedRoute>
-            ),
-          },
-        ],
-      },
+
       {
         path: '/unauthorized',
         element: <Unauthorized />,
       },
+    ],
+  },
+  {
+    path: '/admin',
+    element: (
+      <RoleProtectedRoute allowedRoles={['admin']}>
+        <AdminDashboard />
+      </RoleProtectedRoute>
+    ),
+    children: [
       {
-        path: '/admin',
+        path: 'users-management',
         element: (
           <RoleProtectedRoute allowedRoles={['admin']}>
-            <AdminDashboard />
+            <UsersManagement />
           </RoleProtectedRoute>
         ),
-        children: [
-          {
-            path: 'users-management',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']}>
-                <UsersManagement />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'dashboard',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']}>
-                <Admin />
-              </RoleProtectedRoute>
-            ),
-          },
+      },
+      {
+        path: 'dashboard',
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <Admin />
+          </RoleProtectedRoute>
+        ),
+      },
 
-          {
-            path: 'products',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']}>
-                <ProductManagement />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'products/add',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']}>
-                <CreateBicycleForm />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'products/edit/:id',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']}>
-                <UpdateBicycleForm />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'products/details/:id',
-            element: (
-              <RoleProtectedRoute allowedRoles={['admin']}>
-                <ProductDetails />
-              </RoleProtectedRoute>
-            ),
-          },
-          {
-            path: 'users-management',
-            element: <UsersManagement />,
-          },
-          {
-            path: 'orders',
-            element: <AllOrders />,
-          },
-        ],
+      {
+        path: 'products',
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <ProductManagement />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'products/add',
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <CreateBicycleForm />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'products/edit/:id',
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <UpdateBicycleForm />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'products/details/:id',
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <ProductDetails />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'users-management',
+        element: <UsersManagement />,
+      },
+      {
+        path: 'orders',
+        element: <AllOrders />,
       },
     ],
   },
+  {
+    path: '/user',
+    element: (
+      <RoleProtectedRoute allowedRoles={['user']}>
+        <UserDashBoard />
+      </RoleProtectedRoute>
+    ),
+    children: [
+      {
+        path: 'orders',
+        element: (
+          <RoleProtectedRoute allowedRoles={['user']}>
+            <Order />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'udashboard',
+        element: (
+          <RoleProtectedRoute allowedRoles={['user']}>
+            <UserDash />
+          </RoleProtectedRoute>
+        ),
+      },
+      {
+        path: 'updatePassword',
+        element: (
+          <RoleProtectedRoute allowedRoles={['user']}>
+            <PasswordUpdate />
+          </RoleProtectedRoute>
+        ),
+      },
+    ],
+  },
+  { path: '/signUp', element: <Register /> },
+  { path: '/signIn', element: <SignIn /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

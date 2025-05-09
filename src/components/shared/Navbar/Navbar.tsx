@@ -114,7 +114,7 @@ const Navbar: React.FC = () => {
             Checkout
           </Link>
         </li>
-        {isAuthenticated ||
+        {isAuthenticated &&
           (role === 'admin' && (
             <li>
               <Link
@@ -125,7 +125,7 @@ const Navbar: React.FC = () => {
               </Link>
             </li>
           ))}
-        {isAuthenticated ||
+        {isAuthenticated &&
           (role === 'admin' && (
             <li>
               <Link
@@ -215,7 +215,7 @@ const Navbar: React.FC = () => {
               Checkout
             </Link>
           </li>
-          {isAuthenticated ||
+          {isAuthenticated &&
             (role === 'admin' && (
               <li>
                 <Link
