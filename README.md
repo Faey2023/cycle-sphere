@@ -1,29 +1,34 @@
-# Live link
+# 🚴‍♂️ Cycle Sphere – E-Commerce Store (Client)
 
-https://cycle-sphere.vercel.app
+**Live Site:** [https://cycle-sphere.vercel.app/](https://cycle-sphere.vercel.app/)
 
-## Getting Started
+Cycle Sphere is a modern, full-featured **bicycle e-commerce platform** built with **Next.js**, **TypeScript**, and **Redux Toolkit**. It includes user-friendly product listings, cart functionality, authentication, filtering, and admin management.
 
-1. **Clone the repository:**
+---
 
-   ```bash
-   git clone https://github.com/Faey2023/cycle-sphere
+## ⚙️ Tech Stack
 
-   ```
+- **Frontend:** Next.js 15, React.js, TypeScript
+- **State Management:** Redux Toolkit
+- **Styling:** Tailwind CSS, Shadcn/UI
+- **Animations & UI Enhancements:** Framer Motion, Swiper.js
+- **Authentication:** Firebase
+- **API Integration:** RESTful API via Express.js backend
+- **Deployment:** Vercel
 
-2. **Navigate to the project directory:**
+---
 
-   ```bash
-   cd cycle-sphere
-   ```
+## ✨ Features
 
-3. **Install dependencies:**
+✅ Product filtering, sorting, and search  
+✅ Dynamic product detail pages  
+✅ Add to cart, remove from cart  
+✅ Firebase authentication (signup/login)  
+✅ Role-based admin dashboard  
+✅ Admin features: product management, user roles  
+✅ Responsive design and optimized UX  
 
-   ```bash
-   npm install
-   ```
+---
 
-4. **Run the project:**
-   ```bash
-   npm run dev
-   ```
+## 📦 Folder Structure
+
