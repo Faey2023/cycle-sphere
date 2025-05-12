@@ -28,7 +28,3 @@ Cycle Sphere is a modern, full-featured **bicycle e-commerce platform** built wi
 ✅ Admin features: product management, user roles  
 ✅ Responsive design and optimized UX  
 
----
-
-## 📦 Folder Structure
-
