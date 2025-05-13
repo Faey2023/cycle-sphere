@@ -4,7 +4,7 @@ import baseApi from './baseApi';
 const productApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllBicycle: builder.query({
-      query: (params: GetAllBicyclesParams | string = {}) => {
+      query: (params: GetAllBicyclesParams = {}) => {
         // if searching true,
         if (typeof params === 'string') {
           return params ? `/products?searchTerm=${params}` : '/products';
@@ -40,8 +40,10 @@ const productApi = baseApi.injectEndpoints({
         if (params.sortOrder) queryParams.append('sortOrder', params.sortOrder);
 
         // pagination
-        if (params.page) queryParams.append('page', params.page.toString());
-        if (params.limit) queryParams.append('limit', params.limit.toString());
+        // if (params.page) queryParams.append('page', params.page.toString());
+        // if (params.limit) queryParams.append('limit', params.limit.toString());
+        queryParams.append('page', (params.page ?? 1).toString());
+        queryParams.append('limit', (params.limit ?? 10).toString());
 
         const queryString = queryParams.toString();
         return queryString ? `/products?${queryString}` : '/products';

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Banner = () => {
   return (
     <div className="bg-white">
-      <div className="mx-auto grid max-w-screen-xl py-8 lg:grid-cols-12 lg:gap-8 xl:gap-0">
+      <div className="mx-auto grid max-w-screen-xl lg:grid-cols-12 lg:gap-8 xl:gap-0">
         <div className="mr-auto place-self-center lg:col-span-7">
           <h1 className="mb-4 max-w-2xl text-4xl leading-none font-extrabold tracking-tight md:text-5xl xl:text-6xl">
             Ride Into Adventure with the Perfect Cycle!
@@ -14,7 +14,7 @@ const Banner = () => {
             match for your journey today!
           </p>
           <Link to="/allBicycles">
-            <button className="mr-3 inline-flex cursor-pointer items-center justify-center rounded-lg bg-red-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-red-800 focus:ring-4 focus:ring-red-300">
+            <button className="mr-3 inline-flex cursor-pointer items-center justify-center rounded-lg border-2 border-red-700 bg-red-700 px-5 py-3 text-center text-base font-medium text-white transition-all duration-300 hover:bg-white hover:text-red-700">
               Shop Now
               <svg
                 className="-mr-1 ml-2 h-5 w-5"
@@ -30,14 +30,14 @@ const Banner = () => {
               </svg>
             </button>
           </Link>
-          <Link to="/allBicycles">
+          {/* <Link to="/allBicycles">
             <button className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-5 py-3 text-center text-base font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100">
               Explore Collections
             </button>
-          </Link>
+          </Link> */}
         </div>
         <div className="hidden lg:col-span-5 lg:mt-0 lg:flex">
-          <img src="/assets/cycle-banner.png" alt="man-on-a-cycle-image" />
+          <img src="/cycle-banner.png" alt="man-on-a-cycle-image" />
         </div>
       </div>
     </div>

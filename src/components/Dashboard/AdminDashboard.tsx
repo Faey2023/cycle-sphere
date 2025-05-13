@@ -5,6 +5,7 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 import { useAuth } from '@/context/AuthContext';
 import { db } from '@/firebase/firebase.init'; // Ensure Firestore is imported from firebase.init.ts
 import { collection, getDocs } from 'firebase/firestore';
+import { Skeleton } from '../ui/skeleton';
 
 const { Header, Content, Sider } = Layout;
 
@@ -71,7 +72,7 @@ const AdminDashboard: React.FC = () => {
     }
   }, [isAdmin]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Skeleton />;
   if (!isAdmin) return null; // If not admin, return null
 
   return (

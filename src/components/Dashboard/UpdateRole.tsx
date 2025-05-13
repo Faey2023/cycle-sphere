@@ -8,7 +8,7 @@ const UpdateRole: React.FC<{ userId: string; currentRole: string }> = ({ userId,
     try {
       const userRef = doc(db, 'users', userId);
       await updateDoc(userRef, {
-        role: currentRole === 'admin' ? 'customer' : 'admin', // Toggle role
+        role: currentRole === 'admin' ? 'user' : 'admin', // Toggle role
       });
       alert('User role updated successfully!');
     } catch (error) {
@@ -18,7 +18,7 @@ const UpdateRole: React.FC<{ userId: string; currentRole: string }> = ({ userId,
 
   return (
     <Button onClick={handleUpdateRole}>
-      {currentRole === 'admin' ? 'Demote to Customer' : 'Promote to Admin'}
+      {currentRole === 'admin' ? 'Change role to User' : 'Change role to Admin'}
     </Button>
   );
 };

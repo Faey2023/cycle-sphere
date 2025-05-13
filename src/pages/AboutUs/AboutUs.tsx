@@ -44,11 +44,7 @@ const AboutUs = () => {
 
       {/* Why Customers Love Us */}
       <section className="grid items-center gap-10 md:grid-cols-2">
-        <img
-          src="/customer-service.jpg"
-          alt="Customer service"
-          className="rounded-2xl shadow-md"
-        />
+        <img src="/customer-service.jpg" alt="Customer service" className="rounded-2xl shadow-md" />
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-red-700 md:text-4xl">
             ❤️ Why Our Customers Love Us

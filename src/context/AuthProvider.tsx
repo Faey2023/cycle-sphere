@@ -14,7 +14,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true); // Loading state
   const [isAdmin, setIsAdmin] = useState<boolean>(false); // Admin role status
-  const [isCustomer, setIsCustomer] = useState<boolean>(false); // Customer role status
+  const [isUser, setIsUser] = useState<boolean>(false); // User role status
 
   // Function to create a new user
   const createUser = (email: string, password: string) => {
@@ -42,16 +42,16 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           const userData = userDoc.data(); // Extract user data from Firestore
           setUser({ ...userData, uid: currentUser.uid }); // Store user data including the UID
           setIsAdmin(userData.role === 'admin'); // Set isAdmin based on the user's role
-          setIsCustomer(userData.role === 'customer'); // Set isCustomer based on the user's role
+          setIsUser(userData.role === 'user'); // Set isUser based on the user's role
         } else {
           setUser(currentUser); // If no Firestore data exists, store the Firebase user object
           setIsAdmin(false); // Default to non-admin
-          setIsCustomer(false); // Default to non-customer
+          setIsUser(false); // Default to non-customer
         }
       } else {
         setUser(null); // Set user to null if no user is authenticated
         setIsAdmin(false); // Ensure isAdmin is false if no user
-        setIsCustomer(false); // Ensure isCustomer is false if no user
+        setIsUser(false); // Ensure isUser is false if no user
       }
 
       setLoading(false); // Set loading to false after auth state is checked
@@ -65,7 +65,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     user,
     loading,
     isAdmin,
-    isCustomer, // Include isCustomer in the context value
+    isUser, // Include isUser in the context value
     createUser,
     loginUser,
   };
