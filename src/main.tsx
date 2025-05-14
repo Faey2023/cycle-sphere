@@ -12,14 +12,14 @@ import BicycleDetails from './pages/BicycleDetails/BicycleDetails.tsx';
 import AdminDashboard from './components/Dashboard/AdminDashboard.tsx';
 import RoleProtectedRoute from './components/RoleProtectedRoute';
 import Unauthorized from './pages/Unauthorized';
-import SignIn from './pages/SignIn';
+import SignIn from './pages/Authentication/SignIn.tsx';
 import UsersManagement from './components/Dashboard/UsersManagement.tsx';
 import Checkout from './pages/Checkout/Checkout.tsx';
 import CreateBicycleForm from './components/Products/CreateBicycleForm.tsx';
 import UpdateBicycleForm from './components/Products/UpdateBicycleForm.tsx';
 import ProductDetails from './components/Products/ProductDetails.tsx';
 import Order from './pages/Orders/Orders.tsx';
-import Register from './pages/Register.tsx';
+import Register from './pages/Authentication/Register.tsx';
 import AuthProvider from './context/AuthProvider.tsx';
 import { ToastContainer } from 'react-toastify';
 import UserDashBoard from './components/Dashboard/UserDashBoard.tsx';
@@ -66,14 +66,6 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: 'users-management',
-        element: (
-          <RoleProtectedRoute allowedRoles={['admin']}>
-            <UsersManagement />
-          </RoleProtectedRoute>
-        ),
-      },
-      {
         path: 'dashboard',
         element: (
           <RoleProtectedRoute allowedRoles={['admin']}>
@@ -81,7 +73,14 @@ const router = createBrowserRouter([
           </RoleProtectedRoute>
         ),
       },
-
+      {
+        path: 'users-management',
+        element: (
+          <RoleProtectedRoute allowedRoles={['admin']}>
+            <UsersManagement />
+          </RoleProtectedRoute>
+        ),
+      },
       {
         path: 'products',
         element: (
@@ -141,7 +140,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'udashboard',
+        path: 'dashboard',
         element: (
           <RoleProtectedRoute allowedRoles={['user']}>
             <UserDash />
