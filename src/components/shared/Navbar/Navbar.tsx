@@ -1,17 +1,19 @@
-import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '@/firebase/firebase.init';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { doc, getDoc } from 'firebase/firestore';
+import { User } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState<string | null>(null);
   const navigate = useNavigate();
+  const [isSticky, setIsSticky] = useState(false);
+  const [isUserMenuOpen, setUserMenuOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -35,7 +37,18 @@ const Navbar: React.FC = () => {
     return () => unsubscribe();
   }, []);
 
-  const [isSticky, setIsSticky] = useState(false);
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      navigate('/signIn');
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,21 +65,6 @@ const Navbar: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      navigate('/signIn');
-    } catch (error) {
-      console.error('Sign out error:', error);
-    }
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const avatarLink = role === 'admin' ? '/admin/dashboard' : '/user/udashboard';
 
   return (
     <nav
@@ -106,54 +104,77 @@ const Navbar: React.FC = () => {
             Contact
           </Link>
         </li>
-        <li>
-          <Link
-            to="/checkout"
-            className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
-          >
-            Checkout
-          </Link>
-        </li>
-        {isAuthenticated &&
-          (role === 'admin' && (
+
+        {isAuthenticated && role === 'admin' && (
+          <li>
+            <Link
+              to="/admin/dashboard"
+              className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
+            >
+              Dashboard
+            </Link>
+          </li>
+        )}
+        {isAuthenticated && role === 'user' && (
+          <>
             <li>
               <Link
-                to="/admin/dashboard"
+                to="/checkout"
+                className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
+              >
+                Checkout
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/user/dashboard"
                 className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
               >
                 Dashboard
               </Link>
             </li>
-          ))}
-        {isAuthenticated &&
-          (role === 'admin' && (
-            <li>
-              <Link
-                to="/admin/dashboard"
-                className="rounded-md px-2 py-1 font-medium text-black hover:bg-gray-100"
-              >
-                Dashboard
-              </Link>
-            </li>
-          ))}
+          </>
+        )}
       </ul>
 
       <div className="flex items-center">
         {isAuthenticated ? (
           <>
-            <Button onClick={handleSignOut} className="ml-3 hidden md:block" variant={'red'}>
-              Sign Out
-            </Button>
-            {role && (
-              <Link to={avatarLink} className="ml-4 hidden md:block">
-                <Avatar size="large" icon={<UserOutlined />} />
-              </Link>
-            )}
+            <div
+              onClick={() => setUserMenuOpen(!isUserMenuOpen)}
+              className="relative flex cursor-pointer items-center gap-2 rounded-full border-2 border-black p-1 hover:border-red-800 hover:text-red-800 lg:p-2"
+            >
+              <User />
+
+              {isUserMenuOpen && (
+                <div className="absolute top-full right-0 z-50 mt-2 w-48 rounded-md border bg-white p-4 text-sm shadow-lg">
+                  {/* <p className="mb-1 font-semibold">{user?.name}</p> */}
+                  {/* {role === 'admin' && (
+                    <>
+                      <Link to="/admin/profile">Profile</Link>
+                    </>
+                  )} */}
+                  {role === 'user' && <Link to="/user/updatePassword">Profile</Link>}
+                  {/* <p className="mb-3 text-gray-500">{session?.user?.email}</p> */}
+                  <button
+                    onClick={handleSignOut}
+                    className="w-full cursor-pointer rounded bg-red-600 px-3 py-1.5 text-white hover:bg-red-700"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
           </>
         ) : (
-          <Button asChild className="ml-3 hidden md:block" variant={'red'}>
-            <Link to="/signIn">Sign In</Link>
-          </Button>
+          <>
+            <Link to="/login">
+              <button className="flex cursor-pointer items-center gap-2 hover:text-red-800">
+                <User />
+                LogIn
+              </button>
+            </Link>
+          </>
         )}
       </div>
 
@@ -207,42 +228,75 @@ const Navbar: React.FC = () => {
               Contact
             </Link>
           </li>
-          <li>
-            <Link
-              to="/checkout"
-              className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
-            >
-              Checkout
-            </Link>
-          </li>
-          {isAuthenticated &&
-            (role === 'admin' && (
+
+          {isAuthenticated && role === 'admin' && (
+            <li>
+              <Link
+                to="/admin/dashboard"
+                className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
+              >
+                Dashboard
+              </Link>
+            </li>
+          )}
+          {isAuthenticated && role === 'user' && (
+            <>
               <li>
                 <Link
-                  to="/admin/dashboard"
+                  to="/checkout"
+                  className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
+                >
+                  Checkout
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/user/dashboard"
                   className="rounded-md px-2 py-1 text-sm font-medium text-black hover:bg-gray-100"
                 >
                   Dashboard
                 </Link>
               </li>
-            ))}
+            </>
+          )}
         </ul>
-
         {isAuthenticated ? (
           <>
-            <Button onClick={handleSignOut} className="mt-4" variant={'red'}>
-              Sign Out
-            </Button>
-            {role && (
-              <Link to={avatarLink} className="mt-4 inline-block">
-                <Avatar size="large" icon={<UserOutlined />} />
-              </Link>
-            )}
+            <div
+              onClick={() => setUserMenuOpen(!isUserMenuOpen)}
+              className="relative flex cursor-pointer items-center gap-2 rounded-full border-2 border-black p-1 hover:border-red-800 hover:text-red-800 lg:p-2"
+            >
+              <Avatar size="large" icon={<UserOutlined />} />
+
+              {isUserMenuOpen && (
+                <div className="absolute top-full right-0 z-50 mt-2 w-48 rounded-md border bg-white p-4 text-sm shadow-lg">
+                  {/* <p className="mb-1 font-semibold">{user?.name}</p> */}
+                  {/* {role === 'admin' && (
+                    <>
+                      <Link to="/admin/profile">Profile</Link>
+                    </>
+                  )} */}
+                  {role === 'user' && <Link to="/user/updatePassword">Profile</Link>}
+                  {/* <p className="mb-3 text-gray-500">{session?.user?.email}</p> */}
+                  <button
+                    onClick={handleSignOut}
+                    className="w-full cursor-pointer rounded bg-red-600 px-3 py-1.5 text-white hover:bg-red-700"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
           </>
         ) : (
-          <Button asChild className="mt-4" variant={'red'}>
-            <Link to="/signIn">Sign In</Link>
-          </Button>
+          <>
+            <Link to="/login">
+              <button className="flex cursor-pointer items-center gap-2 hover:text-red-800">
+                <Avatar size="large" icon={<UserOutlined />} />
+                LogIn
+              </button>
+            </Link>
+          </>
         )}
       </div>
     </nav>
